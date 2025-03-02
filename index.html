@@ -77,8 +77,39 @@
         }
 
         /* 按钮样式 */
-        .glass-window button {
-            background: rgba(255, 255, 255, 0.8); /* 半透明白色背景 */
+        .button1 {
+            background: rgba(255, 170, 165, 1); /* 半透明白色背景 */
+            border: none; /* 去除边框 */
+            border-radius: 8px; /* 圆角 */
+            padding: 12px 0; /* 内边距 */
+            cursor: pointer; /* 鼠标悬停时为手型 */
+            font-size: 16px; /* 字体大小 */
+            transition: all 0.3s ease; /* 过渡效果 */
+            width: 100%; /* 宽度为100% */
+        }        
+        .button2 {
+            background: rgba(255, 211, 182, 1); /* 半透明白色背景 */
+            border: none; /* 去除边框 */
+            border-radius: 8px; /* 圆角 */
+            padding: 12px 0; /* 内边距 */
+            cursor: pointer; /* 鼠标悬停时为手型 */
+            font-size: 16px; /* 字体大小 */
+            transition: all 0.3s ease; /* 过渡效果 */
+            width: 100%; /* 宽度为100% */
+        }        
+        .button3 {
+            background: rgba(220, 237, 193, 1); /* 半透明白色背景 */
+            border: none; /* 去除边框 */
+            border-radius: 8px; /* 圆角 */
+            padding: 12px 0; /* 内边距 */
+            cursor: pointer; /* 鼠标悬停时为手型 */
+            font-size: 18px; /* 字体大小 */
+            transition: all 0.3s ease; /* 过渡效果 */
+            width: 100%; /* 宽度为100% */
+            font-weight: bold; /* 加粗字体 */
+        }        
+        .button4 {
+            background: rgba(168, 230, 207, 0.8); /* 半透明白色背景 */
             border: none; /* 去除边框 */
             border-radius: 8px; /* 圆角 */
             padding: 12px 0; /* 内边距 */
@@ -87,7 +118,16 @@
             transition: all 0.3s ease; /* 过渡效果 */
             width: 100%; /* 宽度为100% */
         }
-
+        .button5 {
+            background: rgba(202, 222, 252, 0.8); /* 半透明白色背景 */
+            border: none; /* 去除边框 */
+            border-radius: 8px; /* 圆角 */
+            padding: 12px 0; /* 内边距 */
+            cursor: pointer; /* 鼠标悬停时为手型 */
+            font-size: 16px; /* 字体大小 */
+            transition: all 0.3s ease; /* 过渡效果 */
+            width: 100%; /* 宽度为100% */
+        }
         /* 按钮悬停效果 */
         .glass-window button:hover {
             background: rgba(255, 255, 255, 1); /* 白色背景 */
@@ -108,11 +148,27 @@
         }
 
         /* 友情链接悬停效果 */
-        .footer-link:hover {
-            opacity: 0.9; /* 降低透明度 */
-            text-decoration: underline; /* 添加下划线 */
+
+        .footer-box {
+            display: inline-flex;
+            align-items: center;
+            cursor: pointer;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            margin-top: 25px;
         }
 
+        .footer-box svg {
+            height: 2em; /* 设置 SVG 高度与字体大小相同 */
+            width: auto; /* 保持 SVG 宽高比 */
+            margin-right: 5px; /* 给 SVG 和文字之间添加一些间距 */
+        }
+
+        .footer-box:hover {
+            opacity: 0.9;
+            text-decoration: underline;
+        }
         /* 移动端样式适配 */
         @media (max-width: 480px) {
             .glass-window {
@@ -145,12 +201,25 @@
     <div class="glass-window">
         <h1>前后网络科技工作室</h1> <!-- 标题 -->
         <div class="button-container">
-            <button onclick="window.location.href='https://www.yuque.com/qianhou-xmwbx/chikkd/geq2tzskwegn960g'">远程服务：协助代劳安装软件 进来安装远程</button>
-            <button onclick="window.location.href='https://www.yuque.com/qianhou-xmwbx/chikkd/ii70l2tr5p46g4m6'">非远程：自己下载自己安装自己解决错误</button>
-            <button onclick="window.location.href='https://j1aebrm51k6.feishu.cn/docx/REfGdJKF8od2d4xFuJUcsUvQnyh'">博主免费资源工具箱（密码在主页群里）</button>
-            <button onclick="window.location.href='wx.html'">桌面美化 磁盘清理 重装系统 平台刷网课</button>
+            <button class="button1" onclick="window.location.href='https://www.yuque.com/qianhou-xmwbx/chikkd/geq2tzskwegn960g'">远程服务：协助代劳安装软件 进来安装远程</button>
+            <button class="button2" onclick="window.location.href='https://www.yuque.com/qianhou-xmwbx/chikkd/ii70l2tr5p46g4m6'">非远程：自己下载自己安装自己解决错误</button>
+            <button class="button3" onclick="window.location.href='wx.html'">有偿求代购百亿补贴产品返利润20-200不等</button>
+            <button class="button4" onclick="window.location.href='https://j1aebrm51k6.feishu.cn/docx/REfGdJKF8od2d4xFuJUcsUvQnyh'">博主免费资源工具箱（密码在主页群里）</button>
+            <button class="button5" onclick="window.location.href='wx.html'">桌面美化 磁盘清理 重装系统 平台刷网课</button>
         </div>
-        <a href="wx.html" class="footer-link">WX：ZuoYou_627</a> <!-- 友情链接 -->
+        <div class="footer-box" onclick="window.location.href='wx.html'">
+            <svg t="1740900719229" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                p-id="2678">
+                <path
+                    d="M337.387283 341.82659c-17.757225 0-35.514451 11.83815-35.514451 29.595375s17.757225 29.595376 35.514451 29.595376 29.595376-11.83815 29.595376-29.595376c0-18.49711-11.83815-29.595376-29.595376-29.595375zM577.849711 513.479769c-11.83815 0-22.936416 12.578035-22.936416 23.6763 0 12.578035 11.83815 23.676301 22.936416 23.676301 17.757225 0 29.595376-11.83815 29.595376-23.676301s-11.83815-23.676301-29.595376-23.6763zM501.641618 401.017341c17.757225 0 29.595376-12.578035 29.595376-29.595376 0-17.757225-11.83815-29.595376-29.595376-29.595375s-35.514451 11.83815-35.51445 29.595375 17.757225 29.595376 35.51445 29.595376zM706.589595 513.479769c-11.83815 0-22.936416 12.578035-22.936416 23.6763 0 12.578035 11.83815 23.676301 22.936416 23.676301 17.757225 0 29.595376-11.83815 29.595376-23.676301s-11.83815-23.676301-29.595376-23.6763z"
+                    fill="#28C445" p-id="2679"></path>
+                <path
+                    d="M510.520231 2.959538C228.624277 2.959538 0 231.583815 0 513.479769s228.624277 510.520231 510.520231 510.520231 510.520231-228.624277 510.520231-510.520231-228.624277-510.520231-510.520231-510.520231zM413.595376 644.439306c-29.595376 0-53.271676-5.919075-81.387284-12.578034l-81.387283 41.433526 22.936416-71.768786c-58.450867-41.433526-93.965318-95.445087-93.965317-159.815029 0-113.202312 105.803468-201.988439 233.803468-201.98844 114.682081 0 216.046243 71.028902 236.023121 166.473989-7.398844-0.739884-14.797688-1.479769-22.196532-1.479769-110.982659 1.479769-198.289017 85.086705-198.289017 188.67052 0 17.017341 2.959538 33.294798 7.398844 49.572255-7.398844 0.739884-15.537572 1.479769-22.936416 1.479768z m346.265896 82.867052l17.757225 59.190752-63.630058-35.514451c-22.936416 5.919075-46.612717 11.83815-70.289017 11.83815-111.722543 0-199.768786-76.947977-199.768786-172.393063-0.739884-94.705202 87.306358-171.653179 198.289017-171.65318 105.803468 0 199.028902 77.687861 199.028902 172.393064 0 53.271676-34.774566 100.624277-81.387283 136.138728z"
+                    fill="#28C445" p-id="2680"></path>
+            </svg>
+            WX：ZuoYou_627
+        </div>
+        <!-- <a href="wx.html" class="footer-link">WX：ZuoYou_627</a> 友情链接 -->
     </div>
 
     <script>
