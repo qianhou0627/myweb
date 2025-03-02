@@ -56,6 +56,7 @@
             flex-direction: column; /* 纵向排列 */
             align-items: center; /* 水平居中 */
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 添加阴影 */
+            transition: left 0.3s ease; /* 添加过渡效果 */
         }
 
         /* 标题样式 */
@@ -169,6 +170,27 @@
             opacity: 0.9;
             text-decoration: underline;
         }
+
+        /* 右侧内容区域样式 */
+        .content-area {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 0;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-left: 1px solid rgba(255, 255, 255, 0.2);
+            transition: width 0.3s ease;
+            overflow: hidden;
+        }
+
+        .content-area iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
         /* 移动端样式适配 */
         @media (max-width: 480px) {
             .glass-window {
@@ -201,11 +223,11 @@
     <div class="glass-window">
         <h1>前后网络科技工作室</h1> <!-- 标题 -->
         <div class="button-container">
-            <button class="button1" onclick="window.location.href='https://www.yuque.com/qianhou-xmwbx/chikkd/geq2tzskwegn960g'">远程服务：协助代劳安装软件 进来安装远程</button>
-            <button class="button2" onclick="window.location.href='https://www.yuque.com/qianhou-xmwbx/chikkd/ii70l2tr5p46g4m6'">非远程：自己下载自己安装自己解决错误</button>
-            <button class="button3" onclick="window.location.href='wx.html'">有偿求代购百亿补贴产品返利润20-200不等</button>
-            <button class="button4" onclick="window.location.href='https://j1aebrm51k6.feishu.cn/docx/REfGdJKF8od2d4xFuJUcsUvQnyh'">博主免费资源工具箱（密码在主页群里）</button>
-            <button class="button5" onclick="window.location.href='wx.html'">桌面美化 磁盘清理 重装系统 平台刷网课</button>
+            <button class="button1" data-url="https://www.yuque.com/qianhou-xmwbx/chikkd/geq2tzskwegn960g">远程服务：协助代劳安装软件 进来安装远程</button>
+            <button class="button2" data-url="https://www.yuque.com/qianhou-xmwbx/chikkd/ii70l2tr5p46g4m6">非远程：自己下载自己安装自己解决错误</button>
+            <button class="button3" data-url="wx.html">有偿求代购百亿补贴产品返利润20-200不等</button>
+            <button class="button4" data-url="https://j1aebrm51k6.feishu.cn/docx/REfGdJKF8od2d4xFuJUcsUvQnyh">博主免费资源工具箱（密码在主页群里）</button>
+            <button class="button5" data-url="wx.html">桌面美化 磁盘清理 重装系统 平台刷网课</button>
         </div>
         <div class="footer-box" onclick="window.location.href='wx.html'">
             <svg t="1740900719229" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
@@ -219,16 +241,35 @@
             </svg>
             WX：ZuoYou_627
         </div>
-        <!-- <a href="wx.html" class="footer-link">WX：ZuoYou_627</a> 友情链接 -->
+    </div>
+
+    <!-- 右侧内容区域 -->
+    <div class="content-area">
+        <iframe id="content-iframe" src="" frameborder="0"></iframe>
     </div>
 
     <script>
-        // 视频加载保障：点击页面时播放视频
-        document.addEventListener('click', function initVideo() {
-            const video = document.getElementById('bg-video');
-            video.play();
-            document.removeEventListener('click', initVideo);
-        }, { once: true });
+        // 获取所有按钮和footer-box元素
+        const buttons = document.querySelectorAll('.button-container button, .footer-box');
+        const glassWindow = document.querySelector('.glass-window');
+        const contentArea = document.querySelector('.content-area');
+        const contentIframe = document.getElementById('content-iframe');
+
+        // 给每个按钮添加点击事件监听器
+        buttons.forEach(button => {
+            button.addEventListener('click', function(event) {
+                event.preventDefault(); // 阻止默认的跳转行为
+                const url = this.getAttribute('data-url'); // 获取按钮的data-url属性值
+
+                // 移动左侧窗口到最左侧
+                glassWindow.style.left = '0';
+                glassWindow.style.transform = 'translate(0, -50%)';
+
+                // 显示右侧内容区域并加载链接内容
+                contentArea.style.width = 'calc(100% - 400px)';
+                contentIframe.src = url;
+            });
+        });
     </script>
 </body>
 </html>
