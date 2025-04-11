@@ -1,0 +1,2161 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>软件导航平台</title>
+    <!-- 引入外部样式表 -->
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <!-- 顶部导航区域 -->
+    <header class="header">
+        <div class="logo-container">
+            <!-- 网站 LOGO -->
+            <div class="logo">前  后  QIANHOU</div>
+        </div>
+        <nav class="main-nav">
+            <!-- 导航菜单 -->
+            <ul>
+                <li><a href="#" class="nav-menu-item" data-overlay="design">毕设解决</a></li>
+                <li><a href="#" class="nav-menu-item" data-overlay="job">学生兼职</a></li>
+                <li><a href="#" class="nav-menu-item" data-overlay="shopping">购物省钱</a></li>
+                <li><a href="#" class="nav-menu-item" data-overlay="movie">免费追剧</a></li>
+                <li><a href="#" class="nav-menu-item" data-overlay="contact">合作洽谈</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- 主体内容区域 -->
+    <main class="main-content">
+            <!-- 打字文本框区域 -->
+    <div class="scrolling-text-container">
+        <!-- 显示动态打字效果的文字 -->
+        <span class="scrolling-text">这里是打字效果的文字</span>
+    </div>
+        <!-- 隐藏的左侧展示盒 -->
+        <div class="side-box left-box">
+            <div class="side-tab">
+                <div class="side-tab-text">联系客服</div>
+            </div>
+            <div class="side-content">
+                <h3>联系客服</h3>
+                <p>如有任何问题，请随时联系我们。</p>
+                <p>电话：400-123-4567</p>
+                <p>邮箱：service@qianhou.com</p>
+                <p>工作时间：9:00-18:00</p>
+            </div>
+        </div>
+
+        <!-- 搜索和功能区域 -->
+        <div class="search-section">
+            <!-- 左侧按钮 -->
+            <!-- <button class="control-btn left-btn">未定</button> -->
+            <!-- 搜索框 -->
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="软件名字一定要输入正确 多试......输入后按回车键">
+                <button class="search-btn" id="search-btn">搜索</button>
+            </div>
+            <!-- 右侧按钮 -->
+            <button class="control-btn right-btn">能搜到就能安装（可提供远程安装服务）</button>
+        </div>
+
+        <!-- 隐藏的右侧展示盒 -->
+        <div class="side-box right-box">
+            <div class="side-tab">
+                <div class="side-tab-text">联系人工</div>
+            </div>
+            <div class="side-content">
+                <h3>人工服务：</h3>
+                <p>在线时间：10:00-23:59</p>
+                <p>回复效率：看见就回</p>
+                <img src="./img/gzh.png" alt="联系人工">
+            </div>
+        </div>
+        <!-- 主内容区域 -->
+        <div class="content-area">
+            <!-- 左侧菜单 -->
+            <div class="sidebar">
+                <h3>分类筛选</h3>
+                <!-- 分类列表 -->
+                <ul class="category-list">
+                    <li class="active" data-category="all">热门推荐</li>
+                    <li data-category="download">下载教程</li>
+                    <li data-category="essential">装机必备</li>
+                    <li data-category="os">操作系统</li>
+                    <li data-category="office">办公软件</li>
+                    <li data-category="pdf">PDF软件</li>
+                    <li data-category="doc">文献工具</li>
+                    <li data-category="trans">翻译软件</li>
+                    <li data-category="ai">AI工具</li>
+                    <li data-category="image">图像处理</li>
+                    <li data-category="media">媒体动画</li>
+                    <li data-category="cad">AutoCAD</li>
+                    <li data-category="3d">3D设计</li>
+                    <li data-category="mech">机械设计</li>
+                    <li data-category="arch">建筑设计</li>
+                    <li data-category="web">网页设计</li>
+                    <li data-category="开发编程">开发编程</li>
+                    <li data-category="理科工具">理科工具</li>
+                    <li data-category="仿真模拟">仿真模拟</li>
+                    <li data-category="电子电路">电子电路</li>
+                    <li data-category="行业软件">行业软件</li>
+                </ul>
+            </div>
+
+            <!-- 右侧内容展示 -->
+            <div class="content-display">
+                <!-- 初始化显示全部分类的一部分 -->
+                <div id="all" class="grid-container category-content">
+                    <!-- 这里会显示全部分类的内容 -->
+                </div>
+
+                <!-- 装机必备类别 -->
+                <div id="essential" class="grid-container category-content active">
+                    <div class="grid-item" data-versions='["7-Zip", "WinRAR", "Bandizip"]'>
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240121094402_压缩包.png" alt="压缩解压">
+                        </div>
+                        <h4>压缩解压</h4>
+                        <p>必备压缩软件</p>
+                    </div>
+                    <div class="grid-item" data-versions='["Chrome", "Edge"]'>
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240121092642_%E6%B5%8F%E8%A7%88%E5%99%A8.png" alt="浏览器">
+                        </div>
+                        <h4>浏览器</h4>
+                        <p>必备浏览器</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20241016152346_%E4%B8%8B%E8%BD%BD.png" alt="下载工具">
+                        </div>
+                        <h4>下载工具</h4>
+                        <p>常用下载工具集</p>
+                    </div>
+                    <div class="grid-item" data-versions='["360安全卫士(是垃圾！)", "腾讯电脑管家（是垃圾！）", "火绒安全软件"]'>
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240121093630_%E6%9D%80%E6%AF%92-01.png" alt="杀毒软件">
+                        </div>
+                        <h4>杀毒软件</h4>
+                        <p>主流杀毒软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20241016151628_%E6%92%AD%E6%94%BE.png" alt="媒体播放">
+                        </div>
+                        <h4>媒体播放</h4>
+                        <p>音乐、视频播放软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20241016151350_icon_meeting%20room.png" alt="录屏软件">
+                        </div>
+                        <h4>录屏软件</h4>
+                        <p>屏幕录像工具</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240121094023_%E6%88%AA%E5%9B%BE.png" alt="截图软件">
+                        </div>
+                        <h4>截图软件</h4>
+                        <p>电脑截屏</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240121094211_%E5%8D%B8%E8%BD%BD.png" alt="卸载工具">
+                        </div>
+                        <h4>卸载工具</h4>
+                        <p>必备的软件残留卸载工具</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240121094301_%E5%A3%81%E7%BA%B8%E8%AE%BE%E7%BD%AE.png" alt="主题壁纸">
+                        </div>
+                        <h4>主题壁纸</h4>
+                        <p>常用的电脑壁纸软件</p>
+                    </div>
+                    <div class="grid-item" data-versions='["Todesk"]'>
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240528111354_%E8%BF%9C%E7%A8%8B%E7%94%B5%E8%84%91.png" alt="远程控制">
+                        </div>
+                        <h4>远程控制</h4>
+                        <p>常用远程控制软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240530121427_%E6%9B%B4%E5%A4%9A.png" alt="其它利器">
+                        </div>
+                        <h4>其它利器</h4>
+                        <p>其它神器</p>
+                    </div>
+                    </div>
+                    
+                <!-- 操作系统类别 -->
+                <div id="os" class="grid-container category-content">
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240121094552_%E5%BE%AEPE%E5%B7%A5%E5%85%B7%E7%AE%B1.png" alt="PE工具箱">
+                        </div>
+                        <h4>PE工具箱</h4>
+                        <p>系统引导工具</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240121094454_Snipaste_2024-01-21_09-44-34.png" alt="Vmware">
+                        </div>
+                        <h4>Vmware</h4>
+                        <p>实用的虚拟机软件</p>
+                    </div>
+                    <div class="grid-item" data-versions='["Windows 11 23H2 专业版", "Windows 11 23H2 企业版", "Windows 11 22H2 专业版", "Windows 11 21H2 专业版"]'>
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240121094706_Windows.png" alt="Windows 11">
+                        </div>
+                        <h4>Windows 11</h4>
+                        <p>微软原版系统</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20241111134309_Windows-10.png" alt="Windows 10">
+                        </div>
+                        <h4>Windows 10</h4>
+                        <p>微软原版系统</p>
+                    </div>
+                </div>
+                    
+                <!-- 办公软件类别 -->
+                <div id="office" class="grid-container category-content">
+                    <div class="grid-item" data-versions='["Office 2021 专业增强版", "Office 2019 专业增强版", "Office 2016 专业增强版", "Office 2013 专业增强版", "Office 2010 专业增强版", "Office 365"]'>
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217121209_22141634_aac0f44a52.png" alt="office">
+                        </div>
+                        <h4>office</h4>
+                        <p>微软办公软件套件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217121421_16153942_ad5f80d282.png" alt="Xmind">
+                        </div>
+                        <h4>Xmind</h4>
+                        <p>主流思维导图软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217121706_08170402_704c1310d7.png" alt="Project">
+                        </div>
+                        <h4>Project</h4>
+                        <p>项目管理软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217121605_11142212_6e92312344.jpg" alt="Visio">
+                        </div>
+                        <h4>Visio</h4>
+                        <p>流程图绘制工具</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240628165619_1662342189-aa3bfe4046514f1.jpg" alt="Typora">
+                        </div>
+                        <h4>Typora</h4>
+                        <p>强大的文本编辑工具</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240424091531_25161906_993bc77a12.png" alt="Sketchpad">
+                        </div>
+                        <h4>Sketchpad</h4>
+                        <p>几何画板工具</p>
+                    </div>
+                    </div>
+                    
+                <!-- PDF软件类别 -->
+                <div id="pdf" class="grid-container category-content">
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20241016124946_0.jpeg" alt="Acrobat DC">
+                        </div>
+                        <h4>Acrobat DC</h4>
+                        <p>PDF工具</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20241016125232_0.jpeg" alt="Solid Converter PDF">
+                        </div>
+                        <h4>Solid Converter PDF</h4>
+                        <p>PDF格式转换</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20241016125349_0%20(2).jpeg" alt="PDF Candy Desktop">
+                        </div>
+                        <h4>PDF Candy Desktop</h4>
+                        <p>多功能PDF处理</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20241016125306_0%20(1).jpeg" alt="PDF-XChange">
+                        </div>
+                        <h4>PDF-XChange</h4>
+                        <p>PDF处理工具</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20241102190751_202012251439397931.png" alt="PDFelement">
+                        </div>
+                        <h4>PDFelement</h4>
+                        <p>PDF编辑软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20241016125624_0%20(5).jpeg" alt="PDF Shaper">
+                        </div>
+                        <h4>PDF Shaper</h4>
+                        <p>PDF工具集</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20241016125509_0%20(4).jpeg" alt="PDFgear">
+                        </div>
+                        <h4>PDFgear</h4>
+                        <p>多功能PDF工具</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20241016125429_0%20(3).jpeg" alt="PDF24 Creator">
+                        </div>
+                        <h4>PDF24 Creator</h4>
+                        <p>简易PDF处理</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20241102190835_202101291007187537.png" alt="Master PDF Editor">
+                        </div>
+                        <h4>Master PDF Editor</h4>
+                        <p>轻量级PDF工具</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20241105114711_135614-6603b4fe53ff4.jpg" alt="UPDF">
+                        </div>
+                        <h4>UPDF</h4>
+                        <p>PDF编辑</p>
+                    </div>
+                </div>
+
+                <!-- 文献工具类别 -->
+                <div id="doc" class="grid-container category-content">
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20241016125734_0%20(6).jpeg" alt="EndNote">
+                        </div>
+                        <h4>EndNote</h4>
+                        <p>文献管理工具</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20241016130216_0%20(3).jpeg" alt="CAJViewer">
+                        </div>
+                        <h4>CAJViewer</h4>
+                        <p>文献阅读</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20241101152246_Snipaste_2024-11-01_15-22-34.png" alt="Zotero">
+                        </div>
+                        <h4>Zotero</h4>
+                        <p>文献管理</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20241016125814_0.jpeg" alt="NoteExpress">
+                        </div>
+                        <h4>NoteExpress</h4>
+                        <p>文献检索</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20241101172309_Snipaste_2024-11-01_17-22-24.png" alt="CiteSpace">
+                        </div>
+                        <h4>CiteSpace</h4>
+                        <p>文献分析</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20241104090756_Snipaste_2024-11-04_09-07-41.png" alt="Mendeley">
+                        </div>
+                        <h4>Mendeley</h4>
+                        <p>跨平台文献管理</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20241016130249_0%20(4).jpeg" alt="LaTex">
+                        </div>
+                        <h4>LaTex</h4>
+                        <p>排版工具</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20241016130125_0%20(2).jpeg" alt="论文潜搜">
+                        </div>
+                        <h4>论文潜搜</h4>
+                        <p>论文查重工具</p>
+                    </div>
+                </div>
+
+                <!-- 翻译软件类别 -->
+                <div id="trans" class="grid-container category-content">
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20241016163038_20240217164120_20240217121950_06151250_da122996cd.png" alt="DeepL Pro">
+                        </div>
+                        <h4>DeepL Pro</h4>
+                        <p>强大的翻译软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20241102191039_0.jpeg" alt="pot">
+                        </div>
+                        <h4>pot</h4>
+                        <p>划词翻译软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20241101174215__122019135.jpg" alt="TransSmart">
+                        </div>
+                        <h4>TransSmart</h4>
+                        <p>腾讯出品翻译软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20241016130542_0%20(1).jpeg" alt="STranslate">
+                        </div>
+                        <h4>STranslate</h4>
+                        <p>OCR即时翻译</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20241016130506_0.jpeg" alt="知云文献翻译">
+                        </div>
+                        <h4>知云文献翻译</h4>
+                        <p>实用翻译软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20241016130420_20200506113517491.jpg" alt="CopyTranslator">
+                        </div>
+                        <h4>CopyTranslator</h4>
+                        <p>自动翻译软件</p>
+                    </div>
+                </div>
+
+                <!-- AI工具类别 -->
+                <div id="ai" class="grid-container category-content">
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20250211164255_23-1737010064.png" alt="DeepSeek">
+                        </div>
+                        <h4>DeepSeek</h4>
+                        <p>Ai智能助手</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20241101162759_20240907145933_goods_img.png" alt="Stable Diffusion">
+                        </div>
+                        <h4>Stable Diffusion</h4>
+                        <p>Ai绘画生成工具</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20241101112705_logo.png" alt="OfficeAI">
+                        </div>
+                        <h4>OfficeAI</h4>
+                        <p>Office软件插件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20241101112937_Snipaste_2024-11-01_11-29-28.png" alt="即创AI">
+                        </div>
+                        <h4>即创AI</h4>
+                        <p>短视频创作神器</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20241101162748__202319532.png" alt="AI生产力工具">
+                        </div>
+                        <h4>AI生产力工具</h4>
+                        <p>开源AI工具</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20241102191219_151432-667d1158ba758.png" alt="讯飞星火">
+                        </div>
+                        <h4>讯飞星火</h4>
+                        <p>认知大模型</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20241104095927_22104317it5j.jpg" alt="Kimi AI">
+                        </div>
+                        <h4>Kimi AI</h4>
+                        <p>智能助手</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20241102191143_Snipaste_2024-11-01_11-32-37.png" alt="百度AI图片创作助手">
+                        </div>
+                        <h4>百度AI图片创作助手</h4>
+                        <p>百度出品</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20241101112454_04095205_95e2d55984.png" alt="AI FaceSwap">
+                        </div>
+                        <h4>AI FaceSwap</h4>
+                        <p>Ai换脸工具</p>
+                    </div>
+                </div>
+
+                <!-- 图像处理类别 -->
+                <div id="image" class="grid-container category-content">
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217124612_24095410_69e1ca2c54.png" alt="CorelDRAW">
+                        </div>
+                        <h4>CorelDRAW</h4>
+                        <p>矢量图形编辑软件</p>
+                    </div>
+                    <div class="grid-item" data-versions='["Photoshop 2024", "Photoshop 2023", "Photoshop CC 2022", "Photoshop CC 2021", "Photoshop CC 2020", "Photoshop CS6"]'>
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217124745_18095626_0e2c913d64.png" alt="Photoshop">
+                        </div>
+                        <h4>Photoshop</h4>
+                        <p>专业图像处理软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240424091712_10092329_51dd1046d2.png" alt="Nik Collection">
+                        </div>
+                        <h4>Nik Collection</h4>
+                        <p>图像处理工具</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217124932_18095751_72b9426c85.png" alt="Illustrator">
+                        </div>
+                        <h4>Illustrator</h4>
+                        <p>矢量插画</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217125111_16100059_1df2abe165.png" alt="InDesign">
+                        </div>
+                        <h4>InDesign</h4>
+                        <p>排版设计软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217125233_17091427_08ddd27a64.png" alt="InCopy">
+                        </div>
+                        <h4>InCopy</h4>
+                        <p>文案编辑软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217125340_18104625_9fdc42fad6.png" alt="Lightroom">
+                        </div>
+                        <h4>Lightroom</h4>
+                        <p>照片编辑处理软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20241214100243_67470f5171653-digiarty-aiarty-image-matting-Icon.webp" alt="Aiarty Image">
+                        </div>
+                        <h4>Aiarty Image</h4>
+                        <p>Ai抠图放大</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20241101113647_201708031054419024.jpg" alt="光影魔术手">
+                        </div>
+                        <h4>光影魔术手</h4>
+                        <p>图像处理工具</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217125434_10102932_6170c382a9.png" alt="Capture One">
+                        </div>
+                        <h4>Capture One</h4>
+                        <p>图片编辑软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240530124923_06101341_135b7ad47f_%E5%89%AF%E6%9C%AC.png" alt="DxO合集">
+                        </div>
+                        <h4>DxO合集</h4>
+                        <p>DXO旗下软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240530124727_11095426_d0ef264c72.png" alt="QuarkXPress">
+                        </div>
+                        <h4>QuarkXPress</h4>
+                        <p>版面设计软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240424092227_22-16.png" alt="Krita">
+                        </div>
+                        <h4>Krita</h4>
+                        <p>位图编辑软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240424092026_20-18.png" alt="Topaz">
+                        </div>
+                        <h4>Topaz</h4>
+                        <p>Topaz系列软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217125622_20152558_2b1674ed16.png" alt="Bridge">
+                        </div>
+                        <h4>Bridge</h4>
+                        <p>资源管理软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240530125210_11115936_01c3e2b0ae.png" alt="Luminar合集">
+                        </div>
+                        <h4>Luminar合集</h4>
+                        <p>Luminar旗下软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217125527_06115440_223c5fc58d.png" alt="SketchBook">
+                        </div>
+                        <h4>SketchBook</h4>
+                        <p>草图绘制工具</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217125732_10143028_939e4ec1b1.png" alt="Corel Painter">
+                        </div>
+                        <h4>Corel Painter</h4>
+                        <p>数字美术绘画软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217125829_23090455_691b90e287.png" alt="ACDSee">
+                        </div>
+                        <h4>ACDSee</h4>
+                        <p>专业看图软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217125919_28140352_b0663e35b4.png" alt="PaintTool SAI">
+                        </div>
+                        <h4>PaintTool SAI</h4>
+                        <p>绘图工具</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240530125051_201907260037348626.jpg" alt="Clip Studio Paint">
+                        </div>
+                        <h4>Clip Studio Paint</h4>
+                        <p>动漫创作</p>
+                    </div>
+                </div>
+
+                <!-- 媒体动画类别 -->
+                <div id="media" class="grid-container category-content">
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217131655_18101836_85709f36e4.png" alt="Premier">
+                        </div>
+                        <h4>Premier</h4>
+                        <p>领先的视频编辑软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217131752_12085603_d0f2674047.png" alt="Pr Elements">
+                        </div>
+                        <h4>Pr Elements</h4>
+                        <p>Pr简化版</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217131847_19105756_182bfca3d5.png" alt="After Effects">
+                        </div>
+                        <h4>After Effects</h4>
+                        <p>视频编辑软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20241016125103_0%20(1).jpeg" alt="Topaz Video AI">
+                        </div>
+                        <h4>Topaz Video AI</h4>
+                        <p>视频无损放大</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240218122257_20240217132838_08155643_d000da7543_%E5%89%AF%E6%9C%AC.png" alt="达芬奇">
+                        </div>
+                        <h4>达芬奇</h4>
+                        <p>专业级调色、剪辑工具</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217132550_18112224_fa335f5d35.png" alt="Media Encode">
+                        </div>
+                        <h4>Media Encode</h4>
+                        <p>媒体链接工具</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217131935_23163804_fc462e7dee.png" alt="Prelude">
+                        </div>
+                        <h4>Prelude</h4>
+                        <p>视频编辑软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20241016120230_1614045217_552398.png" alt="剪映">
+                        </div>
+                        <h4>剪映</h4>
+                        <p>短视频剪辑工具</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20241016120123_1661481836_291571.png" alt="Freemake Video Converter">
+                        </div>
+                        <h4>Freemake Video Converter</h4>
+                        <p>视频格式转换工具</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217132645_202011031029514943.png" alt="Edius">
+                        </div>
+                        <h4>Edius</h4>
+                        <p>音视频剪辑软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20241016120325_1615800319_589948.png" alt="格式工厂">
+                        </div>
+                        <h4>格式工厂</h4>
+                        <p>视频格式转换工具</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217132256_18100730_059a40a4d6.png" alt="Audition">
+                        </div>
+                        <h4>Audition</h4>
+                        <p>数字音频编辑软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217132351_13171127_00278426c3.png" alt="Cubase">
+                        </div>
+                        <h4>Cubase</h4>
+                        <p>音频后期处理软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20241015110921_150426-6142ec7ad6857.jpg" alt="Goldwave">
+                        </div>
+                        <h4>Goldwave</h4>
+                        <p>音频编辑工具</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240507140836_1712128882-62bf6ad38c8a1ad.png" alt="Ableton Live Suite">
+                        </div>
+                        <h4>Ableton Live Suite</h4>
+                        <p>数字音频处理</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217132453_202002051518442512.jpg" alt="Nuendo">
+                        </div>
+                        <h4>Nuendo</h4>
+                        <p>专业音频制作软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217132026_30165236_8c619d630d.png" alt="Maya">
+                        </div>
+                        <h4>Maya</h4>
+                        <p>3D 动画、建模、模拟软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20241104161734_20241016112550_20240217132736_19100559_7535111e5c.png" alt="Character Animator">
+                        </div>
+                        <h4>Character Animator</h4>
+                        <p>2D动画设计</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217132205_17155519_7347a45e57.png" alt="Cinema 4D">
+                        </div>
+                        <h4>Cinema 4D</h4>
+                        <p>3D建模、动画和渲染软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240424092627_201803021547314218.jpg" alt="Arnold for C4D">
+                        </div>
+                        <h4>Arnold for C4D</h4>
+                        <p>阿诺德插件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240424092907_202011221605462985.jpg" alt="Corona for C4D">
+                        </div>
+                        <h4>Corona for C4D</h4>
+                        <p>3D渲染器</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20241016122154_20240614190632_Snipaste_2024-06-14_19-05-56.png" alt="Octane for C4D">
+                        </div>
+                        <h4>Octane for C4D</h4>
+                        <p>OC渲染器</p>
+                    </div>
+                </div>
+
+                <!-- AutoCAD类别 -->
+                <div id="cad" class="grid-container category-content">
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217133102_31133257_ac5ba0cc8a.png" alt="CAD">
+                        </div>
+                        <h4>CAD</h4>
+                        <p>领先的 2D 和 3D CAD 工具</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240527170329_09164643_8112f94c5e.png" alt="浩辰CAD">
+                        </div>
+                        <h4>浩辰CAD</h4>
+                        <p>国产CAD软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240527170229_202108191023168134.png" alt="中望CAD">
+                        </div>
+                        <h4>中望CAD</h4>
+                        <p>国产CAD软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240218122136_20240217133102_31133257_ac5ba0cc8a_%E5%89%AF%E6%9C%AC.png" alt="CAD精简版">
+                        </div>
+                        <h4>CAD精简版</h4>
+                        <p>简化版CAD</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217133300_31165356_8d06855f94.png" alt="CAD电气版">
+                        </div>
+                        <h4>CAD电气版</h4>
+                        <p>CAD电气控制系统</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217133358_13115156_16329fe8e2.png" alt="CAD机械版">
+                        </div>
+                        <h4>CAD机械版</h4>
+                        <p>CAD机械工程制图软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217133454_01113150_0f7535efe9.png" alt="CAD建筑版">
+                        </div>
+                        <h4>CAD建筑版</h4>
+                        <p>CAD建筑设计绘图软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217133605_29165439_7ffec4b029.png" alt="天正软件">
+                        </div>
+                        <h4>天正软件</h4>
+                        <p>CAD天正插件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217133722_23161043_338e72a524.jpg" alt="CAD MEP">
+                        </div>
+                        <h4>CAD MEP</h4>
+                        <p>CAD机电工程设计软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217133831_17102358_adf598f423.png" alt="CAD Plant 3D">
+                        </div>
+                        <h4>CAD Plant 3D</h4>
+                        <p>CAD工业设计领域软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217133946_13153230_a48a9e5783.png" alt="CAD Map 3D">
+                        </div>
+                        <h4>CAD Map 3D</h4>
+                        <p>三维地图制作软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217134053_16155001_773d4db154.png" alt="CAXA">
+                        </div>
+                        <h4>CAXA</h4>
+                        <p>CAXA软件集合</p>
+                    </div>
+                </div>
+
+                <!-- 3D设计类别 -->
+                <div id="3d" class="grid-container category-content">
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217140942_30154108_e494909df9.png" alt="3ds Max">
+                        </div>
+                        <h4>3ds Max</h4>
+                        <p>3D建模和动画制作</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240424093027_202011221605462985.jpg" alt="Corona for 3ds Max">
+                        </div>
+                        <h4>Corona for 3ds Max</h4>
+                        <p>3D渲染器</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240907150307_61f21230d0d9b.png" alt="SketchUp">
+                        </div>
+                        <h4>SketchUp</h4>
+                        <p>草图大师</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240424093140_202106151426115079.png" alt="Enscape">
+                        </div>
+                        <h4>Enscape</h4>
+                        <p>3D渲染器</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217141236_10104351_0f51249ba6.png" alt="V-Ray">
+                        </div>
+                        <h4>V-Ray</h4>
+                        <p>渲染器</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20241205093201_23095637_6b0a388234.png" alt="KeyShot">
+                        </div>
+                        <h4>KeyShot</h4>
+                        <p>3D渲染器</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20241205092932_08154949_4abffb137f.png" alt="Marmoset Toolbag">
+                        </div>
+                        <h4>Marmoset Toolbag</h4>
+                        <p>八猴渲染器</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240907124029_202104271846152856.png" alt="Lumion">
+                        </div>
+                        <h4>Lumion</h4>
+                        <p>可视化渲染软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217141536_28152035_39f0c58186.png" alt="Substance 3D">
+                        </div>
+                        <h4>Substance 3D</h4>
+                        <p>绘图工具</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20241205093242_22091735_16ad8cdd61-1.png" alt="ArchiCAD">
+                        </div>
+                        <h4>ArchiCAD</h4>
+                        <p>3D建模</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20241104113519_fd6f91bba50911169c26c3669fc4fdda.jpg" alt="Modo">
+                        </div>
+                        <h4>Modo</h4>
+                        <p>综合性3D软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217141630_07090258_8056f6084a.png" alt="Blender">
+                        </div>
+                        <h4>Blender</h4>
+                        <p>3d动画制作软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217141741_201801050910225232.jpg" alt="酷家乐">
+                        </div>
+                        <h4>酷家乐</h4>
+                        <p>装修设计软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240912180527_20191218095210722.png" alt="SideFX Houdini FX">
+                        </div>
+                        <h4>SideFX Houdini FX</h4>
+                        <p>3D特效制作</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240912180510_201810300730062570.jpg" alt="SimLab Composer">
+                        </div>
+                        <h4>SimLab Composer</h4>
+                        <p>3D场景创建</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240524090721_1687880287-1832d18b0216149.png" alt="Cascadeur">
+                        </div>
+                        <h4>Cascadeur</h4>
+                        <p>人行3D</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217141836_12140433_fd5d36b078.png" alt="CorelCAD">
+                        </div>
+                        <h4>CorelCAD</h4>
+                        <p>CAD制图软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217141913_24144335_a188116442.png" alt="Dimension">
+                        </div>
+                        <h4>Dimension</h4>
+                        <p>3D设计软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217141952_20084353_1ef9db2b26.png" alt="Artlantis">
+                        </div>
+                        <h4>Artlantis</h4>
+                        <p>3D渲染软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20241205093107_19110826_5fad561dc0.png" alt="Pixologic Zbrush">
+                        </div>
+                        <h4>Pixologic Zbrush</h4>
+                        <p>数字雕刻</p>
+                    </div>
+                </div>
+
+                <!-- 机械设计类别 -->
+                <div id="mech" class="grid-container category-content">
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217142314_201711291709546469.jpg" alt="SolidWorks">
+                        </div>
+                        <h4>SolidWorks</h4>
+                        <p>三维制图软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240907124904_201712041118507991.jpg" alt="Rhinoceros">
+                        </div>
+                        <h4>Rhinoceros</h4>
+                        <p>犀牛建模软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217142523_202102051617143382.png" alt="Pro/E">
+                        </div>
+                        <h4>Pro/E</h4>
+                        <p>三维一体化软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240907150444_202006160919466705.jpg" alt="Creo">
+                        </div>
+                        <h4>Creo</h4>
+                        <p>辅助设计软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217142833_14144140_f6c429eb92.png" alt="UG NX">
+                        </div>
+                        <h4>UG NX</h4>
+                        <p>领先的 CAD/CAM/CAE 系统</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217142934_27150318_042a009939.png" alt="CATIA Composer">
+                        </div>
+                        <h4>CATIA Composer</h4>
+                        <p>3D辅助设计软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217143025_15100940_e5e74c7502.png" alt="CATIA">
+                        </div>
+                        <h4>CATIA</h4>
+                        <p>工程设计软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240220090804_Snipaste_2024-02-20_09-07-47.png" alt="Mastercam">
+                        </div>
+                        <h4>Mastercam</h4>
+                        <p>CAD CAM解决方案</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217143233_21100255_59c9bb4a2c.png" alt="Solid Edge">
+                        </div>
+                        <h4>Solid Edge</h4>
+                        <p>智能仿真设计软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217143315_12174904_b39c84ae48.png" alt="PowerMill">
+                        </div>
+                        <h4>PowerMill</h4>
+                        <p>数控机床编程加工软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240221120011_20240219151327_22938aa82ae4fec6e6225b975fb893e6.jpg" alt="Inventor">
+                        </div>
+                        <h4>Inventor</h4>
+                        <p>三维可视化模拟软件</p>
+                    </div>
+                </div>
+
+                <!-- 建筑设计类别 -->
+                <div id="arch" class="grid-container category-content">
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217143504_26151003_c72a913319.png" alt="Revit">
+                        </div>
+                        <h4>Revit</h4>
+                        <p>建筑三维设计软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217143543_17160359_5420db4d99.png" alt="Navisworks">
+                        </div>
+                        <h4>Navisworks</h4>
+                        <p>建筑信息模型协同管理软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217143621_17113204_fa133bcbcc.png" alt="Civil 3D">
+                        </div>
+                        <h4>Civil 3D</h4>
+                        <p>三维土木设计软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217143712_15103125_6ba14aff5e.jpg" alt="Fuzor">
+                        </div>
+                        <h4>Fuzor</h4>
+                        <p>3D虚拟现实设计软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240221123221_20240219164711_16152608_bb8ce99156.png" alt="Tekla Structures">
+                        </div>
+                        <h4>Tekla Structures</h4>
+                        <p>建筑设计软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217143835_29083453_090d7e819e.png" alt="Vectorworks">
+                        </div>
+                        <h4>Vectorworks</h4>
+                        <p>3D建模设计软件</p>
+                    </div>
+                    </div>
+                    
+                <!-- 网页设计类别 -->
+                <div id="web" class="grid-container category-content">
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217143925_24152050_c9b0804f8d.png" alt="Dreamweaver">
+                        </div>
+                        <h4>Dreamweaver</h4>
+                        <p>网页设计软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217144007_08090515_370c485b56.png" alt="Axure">
+                        </div>
+                        <h4>Axure</h4>
+                        <p>原型图设计软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217144056_19102306_9eb66a5e39.png" alt="Animate">
+                        </div>
+                        <h4>Animate</h4>
+                        <p>动画设计软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217144154_201712060929203238.jpg" alt="Flash">
+                        </div>
+                        <h4>Flash</h4>
+                        <p>动画制作软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217144240_27134424_7797b4593b.png" alt="Adobe XD">
+                        </div>
+                        <h4>Adobe XD</h4>
+                        <p>UI设计软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217144337_15102530_1a4cd74b1e.png" alt="Fireworks">
+                        </div>
+                        <h4>Fireworks</h4>
+                        <p>网页作图软件</p>
+                    </div>
+                </div>
+
+                <!-- 理科工具类别 -->
+                <div id="理科工具" class="grid-container category-content">
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217150116_10104236_f109a95622.png" alt="Matlab">
+                        </div>
+                        <h4>Matlab</h4>
+                        <p>商业数学软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240424093940_171815-65b0d5d7da74a.png" alt="AxMath">
+                        </div>
+                        <h4>AxMath</h4>
+                        <p>数学公式编辑</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217150237_30153703_24b34b7779.png" alt="Amos">
+                        </div>
+                        <h4>Amos</h4>
+                        <p>结构方程仿真软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240424232528_09142018_26f07adf72.png" alt="Prism">
+                        </div>
+                        <h4>Prism</h4>
+                        <p>医学统计分析</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217150407_14143655_e378d2257c.png" alt="Mathematica">
+                        </div>
+                        <h4>Mathematica</h4>
+                        <p>科学计算软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240824104824_201808161158572080.jpg" alt="SQL Server">
+                        </div>
+                        <h4>SQL Server</h4>
+                        <p>数据库开发工具</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240424093519_03151116_90464a6e1b.png" alt="Design Exper">
+                        </div>
+                        <h4>Design Exper</h4>
+                        <p>实验设计软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240424093326_SAS_title.jpg" alt="SAS">
+                        </div>
+                        <h4>SAS</h4>
+                        <p>统计分析软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217150541_201801161640497313.jpg" alt="MySQL">
+                        </div>
+                        <h4>MySQL</h4>
+                        <p>数据库管理软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20241111141502_20240424230606_20240424093621_2022093072559.jpg" alt="Mplus">
+                        </div>
+                        <h4>Mplus</h4>
+                        <p>统计建模程序</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217150623_22160820_6abf753b8c.png" alt="Navicat Premium">
+                        </div>
+                        <h4>Navicat Premium</h4>
+                        <p>数据库开发工具</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240424093846_06155257_95893eea3c.png" alt="NCSS">
+                        </div>
+                        <h4>NCSS</h4>
+                        <p>样本量分析</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240424093800_113414-5facad3617fd5.jpg" alt="Cytoscape">
+                        </div>
+                        <h4>Cytoscape</h4>
+                        <p>生物信息分析工具</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217150711_24164231_f8736b1a92.jpg" alt="Tableau">
+                        </div>
+                        <h4>Tableau</h4>
+                        <p>数据分析软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217150749_22114905_6fa871b95d.png" alt="Origin">
+                        </div>
+                        <h4>Origin</h4>
+                        <p>函数绘图工具</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217150824_23145806_54f24ec981.png" alt="Minitab">
+                        </div>
+                        <h4>Minitab</h4>
+                        <p>数据分析工具</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217150906_23142554_47e03ada68.png" alt="LINGO">
+                        </div>
+                        <h4>LINGO</h4>
+                        <p>优化求解器</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217150942_19101323_bd664b4bbc.png" alt="Maple">
+                        </div>
+                        <h4>Maple</h4>
+                        <p>数学建模软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217151024_10154519_4699d9e990.png" alt="SigmaPlot">
+                        </div>
+                        <h4>SigmaPlot</h4>
+                        <p>科学绘图软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240507140343_pyramid_256x256-f5pfAdjA.png" alt="Avantage">
+                        </div>
+                        <h4>Avantage</h4>
+                        <p>XPS数据处理软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240907150755_0000.png" alt="MathCAD">
+                        </div>
+                        <h4>MathCAD</h4>
+                        <p>数学计算软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240508093848_a32a75bdb3e9d01ef7da223b628047e1.jpg" alt="FX Draw Tools MultiDocs">
+                        </div>
+                        <h4>FX Draw Tools MultiDocs</h4>
+                        <p>数学图标绘制工具</p>
+                    </div>
+                    </div>
+                    
+                <!-- 仿真模拟类别 -->
+                <div id="仿真模拟" class="grid-container category-content">
+                    <div class="grid-item" data-versions='["ANSYS 2024 R1", "ANSYS 2023 R2", "ANSYS 2022 R1", "ANSYS 2021 R1", "ANSYS 2020 R2"]'>
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217151105_19180315_d3d3109dff.jpg" alt="ANSYS">
+                        </div>
+                        <h4>ANSYS</h4>
+                        <p>CAE仿真软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240424094127_6e1f14a5e4b7cda3c58e5d0422114908.jpg" alt="ANSYS Lumerical">
+                        </div>
+                        <h4>ANSYS Lumerical</h4>
+                        <p>光学仿真工具</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217151451_21110701_dd74034bae.png" alt="ANSYS Electronics">
+                        </div>
+                        <h4>ANSYS Electronics</h4>
+                        <p>电气设计系统</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217151247_202012171038151611.jpg" alt="Adams">
+                        </div>
+                        <h4>Adams</h4>
+                        <p>动态仿真分析软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217151157_201807241633047374.jpg" alt="Abaqus">
+                        </div>
+                        <h4>Abaqus</h4>
+                        <p>有限元分析软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20241204104627_202102240913354319.png" alt="Altair EDEM">
+                        </div>
+                        <h4>Altair EDEM</h4>
+                        <p>散装与颗粒物料仿真</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217151412_26115139_a2848da289.png" alt="Altair Hyperwork">
+                        </div>
+                        <h4>Altair Hyperwork</h4>
+                        <p>有限元建模工具</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240424094222_090316-623288d49d7d7.jpg" alt="VERICUT">
+                        </div>
+                        <h4>VERICUT</h4>
+                        <p>数控编程仿真</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20241101121901_Snipaste_2024-11-01_12-18-03.png" alt="Materials Studio">
+                        </div>
+                        <h4>Materials Studio</h4>
+                        <p>材料模拟软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217151533_21094723_fcdac041ff.png" alt="COMSOL">
+                        </div>
+                        <h4>COMSOL</h4>
+                        <p>多物理场建模</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240910164049_29131409_5d284dbd86.png" alt="Tecplot RS">
+                        </div>
+                        <h4>Tecplot RS</h4>
+                        <p>数据可视化分析</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240910100647_202007281514363489.jpg" alt="Tecplot Focus">
+                        </div>
+                        <h4>Tecplot Focus</h4>
+                        <p>CFD分析工具</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217151614_29111410_15309b8468.png" alt="Tecplot 360 EX">
+                        </div>
+                        <h4>Tecplot 360 EX</h4>
+                        <p>CFD/CAE可视化分析软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240910100316_135536-620f34d8a63b4.jpg" alt="JMatPro">
+                        </div>
+                        <h4>JMatPro</h4>
+                        <p>金属材料模拟</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217151706_26103155_efa27d049b.png" alt="Moldflow">
+                        </div>
+                        <h4>Moldflow</h4>
+                        <p>注塑成型模拟工具</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217151849_05122553_55dad18b91.png" alt="VERO VISI">
+                        </div>
+                        <h4>VERO VISI</h4>
+                        <p>CAD设计软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240910164049_29131409_5d284dbd86.png" alt="midas Gen">
+                        </div>
+                        <h4>midas Gen</h4>
+                        <p>建筑结构分析</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217151926_03092408_d6114d9656.png" alt="midas civil">
+                        </div>
+                        <h4>midas civil</h4>
+                        <p>有限元分析软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217151329_21145700_9e7b40c9c7.png" alt="midas NFX">
+                        </div>
+                        <h4>midas NFX</h4>
+                        <p>有限元仿真分析软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240910164049_29131409_5d284dbd86.png" alt="PLAXIS">
+                        </div>
+                        <h4>PLAXIS</h4>
+                        <p>岩土分析</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240424094409_25115215_537e06b7c3.png" alt="FLAC3D">
+                        </div>
+                        <h4>FLAC3D</h4>
+                        <p>工程建模仿真</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217152000_29163515_d47db6b3fc.png" alt="Dynaform">
+                        </div>
+                        <h4>Dynaform</h4>
+                        <p>模具分析设计</p>
+                    </div>
+                </div>
+
+                <!-- 电子电路类别 -->
+                <div id="电子电路" class="grid-container category-content">
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217152042_15103134_48d18c081d.png" alt="Altium Designer">
+                        </div>
+                        <h4>Altium Designer</h4>
+                        <p>电子产品开发系统</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240628172111_Siemens-Simcenter-MotorSolve-2021-Free-Download-GetintoPC.com_-140x140.jpg" alt="MotorSolve">
+                        </div>
+                        <h4>MotorSolve</h4>
+                        <p>电动机设计软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217152240_22165434_e177d4ad62.png" alt="Multisim">
+                        </div>
+                        <h4>Multisim</h4>
+                        <p>仿真工具</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240424094623_085612-620462acf3414.jpg" alt="Cadence SPB">
+                        </div>
+                        <h4>Cadence SPB</h4>
+                        <p>PCB布线编辑</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217152324_02112125_8113c19c3f.png" alt="Proteus">
+                        </div>
+                        <h4>Proteus</h4>
+                        <p>单片机仿真软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240424094806_114909-620339b530736.jpg" alt="PSIM">
+                        </div>
+                        <h4>PSIM</h4>
+                        <p>电子、电机仿真工具</p>
+                    </div>
+                </div>
+
+                <!-- 行业软件类别 -->
+                <div id="行业软件" class="grid-container category-content">
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217152402_08162237_ad0f6a0970.png" alt="ENVI">
+                        </div>
+                        <h4>ENVI</h4>
+                        <p>遥感图像处理平台</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240628161946_20240217152130_29175901_8724503024.png" alt="Epaln">
+                        </div>
+                        <h4>Epaln</h4>
+                        <p>专业电气设计软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240907124506_20200526154053418.jpg" alt="TIA Portal">
+                        </div>
+                        <h4>TIA Portal</h4>
+                        <p>自动化编程软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217152548_201808191114462469.jpg" alt="hyperMILL">
+                        </div>
+                        <h4>hyperMILL</h4>
+                        <p>零件加工设计软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217152643_202104191635136449.png" alt="Vred">
+                        </div>
+                        <h4>Vred</h4>
+                        <p>可视化样机软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240628162059_61d2b2a95a21d.png" alt="GX Works">
+                        </div>
+                        <h4>GX Works</h4>
+                        <p>PLC编程软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217152721_18155727_b630513a41.png" alt="Jade">
+                        </div>
+                        <h4>Jade</h4>
+                        <p>CRD分析软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217152837_17165217_aa447830e1.png" alt="Marvelous Designer">
+                        </div>
+                        <h4>Marvelous Designer</h4>
+                        <p>服装设计软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217152802_02095412_ac2ba7e0e8.png" alt="EViews">
+                        </div>
+                        <h4>EViews</h4>
+                        <p>计量分析软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217152913_13155848_a9eca3cd17.png" alt="Autodesk Mudbox">
+                        </div>
+                        <h4>Autodesk Mudbox</h4>
+                        <p>3D雕刻设计软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217153257_17160328_ea5e491819.png" alt="Alias AutoStudio">
+                        </div>
+                        <h4>Alias AutoStudio</h4>
+                        <p>工业设计软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217153155_Snipaste_2024-02-17_15-31-33.png" alt="Ansys Zemax OpticStudio">
+                        </div>
+                        <h4>Ansys Zemax OpticStudio</h4>
+                        <p>光学设计辅助软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217153343_20180301104054663.jpg" alt="Materialise Mimic">
+                        </div>
+                        <h4>Materialise Mimic</h4>
+                        <p>医学影像设计软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217153522_105720-621edd109e1a4.jpg" alt="PASS">
+                        </div>
+                        <h4>PASS</h4>
+                        <p>功效分析和样本量计算</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240701085948_58-09.png" alt="Global Mapper">
+                        </div>
+                        <h4>Global Mapper</h4>
+                        <p>地图绘制查看工具</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217153608_622564aa004e6.png" alt="PCI Geomatica">
+                        </div>
+                        <h4>PCI Geomatica</h4>
+                        <p>地理空间信息</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240417115603_202009061656155171.png" alt="ArcGIS">
+                        </div>
+                        <h4>ArcGIS</h4>
+                        <p>地理信息系统</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240415103230_201804071528398572.jpg" alt="ABB RobotStudio">
+                        </div>
+                        <h4>ABB RobotStudio</h4>
+                        <p>机器人仿真编程软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240611112845_20240327155342_Snipaste_2024-03-27_15-53-29.png" alt="Google Earth">
+                        </div>
+                        <h4>Google Earth</h4>
+                        <p>谷歌地球</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240424095918_134844-6204a73c3e8ed.jpg" alt="Oligo">
+                        </div>
+                        <h4>Oligo</h4>
+                        <p>物引设计软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240611112845_20240327155342_Snipaste_2024-03-27_15-53-29.png" alt="组态王">
+                        </div>
+                        <h4>组态王</h4>
+                        <p>西门子旗下软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217152402_08162237_ad0f6a0970.png" alt="ChemDraw">
+                        </div>
+                        <h4>ChemDraw</h4>
+                        <p>化学绘图软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240806105938_201803091158092620.jpg" alt="jewelCAD">
+                </div>
+                        <h4>jewelCAD</h4>
+                        <p>珠宝设计软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20250109092515_Icon_Siemens-SIMATIC-WinCC_free-download.webp" alt="WinCC">
+                        </div>
+                        <h4>WinCC</h4>
+                        <p>过程监视的视窗控制中心</p>
+                    </div>
+                </div>
+
+                <!-- 开发编程类别 -->
+                <div id="开发编程" class="grid-container category-content">
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217144433_05112535_522c61fac6.png" alt="开发环境">
+                        </div>
+                        <h4>开发环境</h4>
+                        <p>常用VB VC VC++软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217144526_17162418_017d8d41b7.png" alt="Java">
+                        </div>
+                        <h4>Java</h4>
+                        <p>编程语言平台</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217144622_20100303_d2f64dad9a.png" alt="代码工具">
+                        </div>
+                        <h4>代码工具</h4>
+                        <p>代码编辑工具集合</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217144715_201801061016064966.jpg" alt="R语言">
+                        </div>
+                        <h4>R语言</h4>
+                        <p>R语言编程环境</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240329131035_09154816_a882302bc7.png" alt="DBeaver Ultimate">
+                        </div>
+                        <h4>DBeaver Ultimate</h4>
+                        <p>数据库管理工具</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217144917_202102271015472650.png" alt="Android Studio">
+                        </div>
+                        <h4>Android Studio</h4>
+                        <p>安卓开发集成环境</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217144820_201803021019312024.jpg" alt="Anaconda">
+                        </div>
+                        <h4>Anaconda</h4>
+                        <p>开源的python发行版本</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217145006_20105450_916689d8ec.png" alt="MyEclipse">
+                        </div>
+                        <h4>MyEclipse</h4>
+                        <p>Java插件合集</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217145112_112032-620c6d80accfc.jpg" alt="eclipse">
+                        </div>
+                        <h4>eclipse</h4>
+                        <p>开源代码拓展平台</p>
+                    </div>
+                    <div class="grid-item" data-versions='["Visual Studio 2022", "Visual Studio 2019", "Visual Studio 2017", "Visual Studio 2015", "Visual Studio 2013", "Visual Studio 2010"]'>
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217145326_23110927_5c832eb514.jpg" alt="Visual Studio">
+                        </div>
+                        <h4>Visual Studio</h4>
+                        <p>C++编译器</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217145207_21101223_d9a91507b0.png" alt="Visual Studio code">
+                        </div>
+                        <h4>Visual Studio code</h4>
+                        <p>代码编辑器</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217145407_23135700_bb8443a136.jpg" alt="Labview">
+                        </div>
+                        <h4>Labview</h4>
+                        <p>图形化编程软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217145516_201712221041576906.jpg" alt="Python">
+                        </div>
+                        <h4>Python</h4>
+                        <p>高级程序设计语言</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217145714_23161136_ea77386348.jpg" alt="Keil">
+                        </div>
+                        <h4>Keil</h4>
+                        <p>C语言开发系统</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217145633_07112640_eb9a13c27b.png" alt="Unity">
+                        </div>
+                        <h4>Unity</h4>
+                        <p>游戏开发工具</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240907150532_20240904090134_Snipaste_2024-09-04_09-00-36.png" alt="JetBrains">
+                        </div>
+                        <h4>JetBrains</h4>
+                        <p>JetBrains合集</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217145843_24103921_305e7a2e09.jpg" alt="Quartus II">
+                        </div>
+                        <h4>Quartus II</h4>
+                        <p>PLD/FPGA开发软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217145939_24114733_bdde6f7684.png" alt="CIMCO Edit">
+                        </div>
+                        <h4>CIMCO Edit</h4>
+                        <p>仿真工具</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="https://vedio.softgj.com/Picture/20240217150027_201808181646193324.jpg" alt="Step7">
+                        </div>
+                        <h4>Step7</h4>
+                        <p>西门子PLC编程软件</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </main>
+
+    <!-- 免责声明区域 -->
+    <div class="disclaimer-container">
+        <div class="disclaimer-inner">
+            <div class="disclaimer-header">
+                <span class="disclaimer-icon">⚖️</span>
+                <h3>免责声明</h3>
+                <span class="disclaimer-icon">⚖️</span>
+            </div>
+            <div class="disclaimer-content">
+                <div class="disclaimer-item">
+                    <div class="disclaimer-number">1</div>
+                    <p>本站提供的所有软件和资料均为网络收集，仅供学习和研究使用，不得用于任何商业用途。否则，一切后果请用户自负。本站并不承担任何法律责任。如果侵犯了您的知识产权或其他权利，责任由使用者或转载者本人承担，本公众号以及本人对此不承担任何责任。同时您必须在下载后的24个小时之内，从您的电脑中彻底删除该程序。如果您喜欢该程序，请支持正版软件，购买注册，得到更好的正版服务。</p>
+                </div>
+                <div class="disclaimer-item">
+                    <div class="disclaimer-number">2</div>
+                    <p>我们提供下载的内容均来自互联网。如有内容侵犯您的版权或其他利益的，请编辑邮件并加以说明发送到我们的邮箱<a href="mailto:qianhouziyuan@foxmail.com">qianhouziyuan@foxmail.com</a>，我们会在收到消息后七个工作日内处理。</p>
+                </div>
+                <div class="disclaimer-item disclaimer-legal">
+                    <p><strong>附:</strong> 二OO二年一月一日《计算机软件保护条例》第十七条规定：为了学习和研究软件内含的设计思想和原理，通过安装、显示、传输或者存储软件等方式使用软件的，可以不经软件著作权人许可，不向其支付报酬！鉴于此，也希望大家按此说明研究软件！</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚区域 -->
+    <footer class="footer">
+        <p>© 2024 软件集。保留所有权利。</p>
+    </footer>
+
+    <!-- 引入外部 JavaScript 文件 -->
+    <script src="index.js"></script>
+    <script>
+        // 打字机效果
+        var text = document.querySelector('.scrolling-text');
+        const txt = ["相信奇迹的人，本身和奇迹一样了不起！", "给我高高的飞起来啊！", "拉勾的事情，就一定要做到！"];
+    
+        var index = 0;
+        var xiaBiao = 0;
+        var huan = true;
+    
+        setInterval(function () {
+            if (huan) {
+                text.innerHTML = txt[xiaBiao].slice(0, ++index);
+            } else {
+                text.innerHTML = txt[xiaBiao].slice(0, index--);
+            }
+    
+            if (index == txt[xiaBiao].length + 3) {
+                huan = false;
+            } else if (index < 0) {
+                index = 0;
+                huan = true;
+                xiaBiao++;
+                if (xiaBiao >= txt.length) {
+                    xiaBiao = 0;
+                }
+            }
+        }, 200);
+
+        // 左侧菜单点击功能
+        document.addEventListener('DOMContentLoaded', function() {
+            // 获取所有分类项
+            const categoryItems = document.querySelectorAll('.category-list li');
+            // 获取所有内容区域
+            const categoryContents = document.querySelectorAll('.category-content');
+            
+            // 初始化：创建全部分类内容
+            const allContainer = document.getElementById('all');
+            // 清空现有内容
+            allContainer.innerHTML = '';
+            
+            // 从每个分类中提取前4个项目添加到全部分类中
+            document.querySelectorAll('.category-content:not(#all)').forEach(category => {
+                const items = category.querySelectorAll('.grid-item');
+                for (let i = 0; i < Math.min(4, items.length); i++) {
+                    if (items[i]) {
+                        allContainer.appendChild(items[i].cloneNode(true));
+                    }
+                }
+            });
+            
+            // 为每个分类项添加点击事件
+            categoryItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    // 移除所有活动状态
+                    categoryItems.forEach(el => el.classList.remove('active'));
+                    categoryContents.forEach(el => el.classList.remove('active'));
+                    
+                    // 添加当前活动状态
+                    this.classList.add('active');
+                    
+                    // 显示对应的内容
+                    const category = this.getAttribute('data-category');
+                    const content = document.getElementById(category);
+                    if (content) {
+                        content.classList.add('active');
+                    }
+                });
+            });
+
+            // 搜索功能实现
+            const searchInput = document.getElementById('search-input');
+            const searchBtn = document.getElementById('search-btn');
+
+            // 搜索函数
+            function performSearch() {
+                const searchText = searchInput.value.toLowerCase().trim();
+                
+                if (!searchText) return; // 如果搜索内容为空，不执行搜索
+                
+                // 移除所有现有的高亮
+                document.querySelectorAll('.search-highlight').forEach(item => {
+                    item.classList.remove('search-highlight');
+                });
+                
+                // 搜索匹配项
+                let matchFound = false;
+                let firstMatchItem = null;
+                let matchedCategory = null;
+                
+                // 在所有网格项中搜索
+                document.querySelectorAll('.grid-item').forEach(item => {
+                    const itemName = item.querySelector('h4').textContent.toLowerCase();
+                    const itemDesc = item.querySelector('p').textContent.toLowerCase();
+                    
+                    if (itemName.includes(searchText) || itemDesc.includes(searchText)) {
+                        // 获取所属分类
+                        const parentCategory = item.closest('.category-content');
+                        if (parentCategory && parentCategory.id) {
+                            matchedCategory = parentCategory.id;
+                            item.classList.add('search-highlight'); // 添加高亮样式
+                            
+                            if (!firstMatchItem) {
+                                firstMatchItem = item; // 保存第一个匹配项用于滚动
+                            }
+                            
+                            matchFound = true;
+                        }
+                    }
+                });
+                
+                if (matchFound && matchedCategory) {
+                    // 找到匹配项时，激活对应分类的sidebar项
+                    categoryItems.forEach(item => {
+                        item.classList.remove('active');
+                        if (item.getAttribute('data-category') === matchedCategory) {
+                            item.classList.add('active');
+                        }
+                    });
+                    
+                    // 显示对应分类内容
+                    categoryContents.forEach(content => {
+                        content.classList.remove('active');
+                        if (content.id === matchedCategory) {
+                            content.classList.add('active');
+                        }
+                    });
+                    
+                    // 滚动到第一个匹配项
+                    if (firstMatchItem) {
+                        setTimeout(() => {
+                            firstMatchItem.scrollIntoView({ 
+                                behavior: 'smooth', 
+                                block: 'center' 
+                            });
+                        }, 300); // 延迟一点时间，确保分类切换完成
+                    }
+                } else {
+                    // 未找到匹配项，显示提示
+                    alert('未找到匹配的软件，请尝试其他关键词');
+                }
+            }
+            
+            // 点击搜索按钮执行搜索
+            searchBtn.addEventListener('click', performSearch);
+            
+            // 按回车键执行搜索
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    performSearch();
+                }
+            });
+        });
+    </script>
+    <!-- 导航菜单覆盖层 -->
+    <div class="nav-overlay" id="design-overlay">
+        <div class="nav-overlay-content">
+            <div class="nav-overlay-close">&times;</div>
+            <h2>毕设解决</h2>
+            <p>业务筹划中......</p>
+        </div>
+    </div>
+    
+    <div class="nav-overlay" id="job-overlay">
+        <div class="nav-overlay-content">
+            <div class="nav-overlay-close">&times;</div>
+            <h2>学生兼职</h2>
+            <p>业务筹划中......</p>
+        </div>
+    </div>
+    
+    <div class="nav-overlay" id="shopping-overlay">
+        <div class="nav-overlay-content">
+            <div class="nav-overlay-close">&times;</div>
+            <h2>购物省钱</h2>
+            <p>业务筹划中......</p>
+        </div>
+    </div>
+    
+    <div class="nav-overlay" id="movie-overlay">
+        <div class="nav-overlay-content">
+            <div class="nav-overlay-close">&times;</div>
+            <h2>免费追剧</h2>
+            <p>业务筹划中......</p>
+        </div>
+    </div>
+    
+    <div class="nav-overlay" id="contact-overlay">
+        <div class="nav-overlay-content">
+            <div class="nav-overlay-close">&times;</div>
+            <h2>合作洽谈</h2>
+            <p>这里是合作洽谈的内容</p>
+        </div>
+    </div>
+    
+    <script>
+        // 导航菜单覆盖层逻辑
+        document.querySelectorAll('.nav-menu-item').forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+                const overlayId = this.getAttribute('data-overlay');
+                document.getElementById(`${overlayId}-overlay`).classList.add('active');
+            });
+        });
+        
+        // 关闭覆盖层
+        document.querySelectorAll('.nav-overlay-close').forEach(closeBtn => {
+            closeBtn.addEventListener('click', function() {
+                this.closest('.nav-overlay').classList.remove('active');
+            });
+        });
+        
+        // 点击覆盖层背景关闭
+        document.querySelectorAll('.nav-overlay').forEach(overlay => {
+            overlay.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
