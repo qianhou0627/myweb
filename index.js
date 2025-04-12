@@ -616,7 +616,7 @@ function updateGridItemVersions() {
                 // 精确匹配：查找所有 linksData 中 name 以 softwareTitle 开头的条目
                 // 同时转换为小写进行不区分大小写的比较
                 const matchingVersions = linksData
-                    .filter(linkItem => linkItem.name.toLowerCase().includes(softwareTitle.toLowerCase()))
+                    .filter(linkItem => linkItem.name.toLowerCase().startsWith(softwareTitle.toLowerCase()))
                     .map(linkItem => linkItem.name); // 获取完整名称
                 
                 if (matchingVersions.length > 0) {
