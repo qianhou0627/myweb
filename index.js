@@ -1,19 +1,5 @@
 // 添加自定义版本下载链接映射 - 放在文件顶部全局作用域
-const customVersionLinks = {
-    "7-Zip": {
-        baidu: "https://pan.baidu.com/s/your_7zip_link",
-        thunder: "thunder://your_7zip_thunder_link"
-    },
-    "WinRAR": {
-        baidu: "https://pan.baidu.com/s/your_winrar_link",
-        thunder: "thunder://your_winrar_thunder_link"
-    },
-    "Bandizip": {
-        baidu: "https://pan.baidu.com/s/your_bandizip_link",
-        thunder: "thunder://your_bandizip_thunder_link"
-    }
-    // 添加更多版本的链接
-};
+
 
 document.addEventListener('DOMContentLoaded', function() {
     // 延迟一点时间再执行，确保DOM完全解析
