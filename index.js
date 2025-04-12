@@ -451,6 +451,99 @@ function openCustomVersionPage(softwareName, versionsList) {
     document.body.appendChild(overlay);
 }
 
+// 添加自动更新grid-item版本信息的函数
+function updateGridItemVersions() {
+    console.log('开始更新grid-item的版本信息...');
+    
+    fetch('/src/links.json')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('获取links.json失败');
+            }
+            return response.json();
+        })
+        .then(linksData => {
+            console.log('links.json 数据获取成功:', linksData.length, '条记录');
+            
+            const gridItems = document.querySelectorAll('.grid-item');
+            
+            gridItems.forEach(item => {
+                // 如果已经有手动设置的data-versions，则跳过自动更新
+                if (item.hasAttribute('data-versions') && item.getAttribute('data-versions')) {
+                    console.log('发现手动设置的data-versions，保留原值:', item.getAttribute('data-versions'));
+                    return;
+                }
+                
+                const titleElement = item.querySelector('h4');
+                if (!titleElement) return;
+                
+                const softwareTitle = titleElement.innerText.trim();
+                
+                // 精确匹配：查找所有 linksData 中 name 包含 softwareTitle 的条目
+                const matchingVersions = linksData
+                    .filter(linkItem => linkItem.name.toLowerCase().includes(softwareTitle.toLowerCase()))
+                    .map(linkItem => linkItem.name); // 获取完整名称
+                
+                if (matchingVersions.length > 0) {
+                    console.log(`更新 "${softwareTitle}" 的 data-versions 为:`, matchingVersions);
+                    // 直接将找到的完整名称数组存储起来
+                    item.setAttribute('data-versions', JSON.stringify(matchingVersions));
+                } else {
+                    // 如果没有找到匹配项，移除可能存在的旧属性
+                    if (item.hasAttribute('data-versions')) {
+                        item.removeAttribute('data-versions');
+                    }
+                    // console.log(`未找到 "${softwareTitle}" 的匹配版本`);
+                }
+            });
+            
+            console.log('grid-item 版本信息更新完成');
+            
+            // 确保数据处理完成后再绑定点击事件
+            console.log('现在设置 grid-item 点击事件...');
+            setupGridItemClickEvents(); 
+            console.log('grid-item 点击事件设置完成');
+
+        })
+        .catch(error => {
+            console.error('更新grid-item版本信息失败:', error);
+            console.warn('即使更新失败，也尝试设置 grid-item 点击事件...');
+            setupGridItemClickEvents(); // 即使失败也绑定事件
+        });
+}
+const customVersionLinks = {
+    "7-Zip": {
+        baidu: "https://www.7-zip.org/download.html",
+    },
+    "WinRAR": {
+        baidu: "https://pan.baidu.com/s/",
+    },
+    "Bandizip": {
+        baidu: "https://pan.baidu.com/s/",
+    },
+    "Googel Chrome": {
+        baidu: "https://pan.baidu.com/s/",
+    },
+    "Edge": {
+        baidu: "https://www.microsoft.com/zh-cn/edge/download?form=MA13FJ",
+    },
+    "火绒安全软件": {
+        baidu: "https://huorong.cn/person5.html",
+    },
+    "360安全卫士 (是垃圾！)": {
+        baidu: "https://pan.baidu.com/s/",
+    },
+    "腾讯电脑管家（是垃圾！）": {
+        baidu: "https://pan.baidu.com/s/",
+    },  
+    "金山毒霸（是垃圾！）": {
+        baidu: "https://pan.baidu.com/s/",
+    },
+    "potplayer": {
+        baidu: "https://potplayer.tv/?lang=zh_CN",
+    },
+}
+
 // 从本地JSON文件获取下载链接
 function getDownloadLink(softwareName, linkType) {
     console.log(`获取 ${softwareName} 的 ${linkType} 下载链接`);
@@ -481,6 +574,16 @@ function getDownloadLink(softwareName, linkType) {
                     window.open(link, '_blank');
                     return;
                 }
+            } else if (customVersionLinks[softwareName]) {
+                // 尝试从自定义映射中获取
+                const link = linkType === 'baidu' ? 
+                    customVersionLinks[softwareName].baidu : 
+                    customVersionLinks[softwareName].thunder;
+                
+                if (link) {
+                    window.open(link, '_blank');
+                    return;
+                }
             }
             
             // 如果没有找到匹配的软件或链接，显示错误提示
@@ -491,7 +594,7 @@ function getDownloadLink(softwareName, linkType) {
             console.error('获取下载链接数据失败:', error);
             showLinkNotFoundOverlay();
         });
-}
+} 
 
 // 显示链接未找到的提示覆盖层
 function showLinkNotFoundOverlay() {
@@ -589,61 +692,4 @@ function showContactOverlay(requestType) {
     
     // 添加到 body
     document.body.appendChild(contactOverlay);
-}
-
-// 添加自动更新grid-item版本信息的函数
-function updateGridItemVersions() {
-    console.log('开始更新grid-item的版本信息...');
-    
-    fetch('/src/links.json')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('获取links.json失败');
-            }
-            return response.json();
-        })
-        .then(linksData => {
-            console.log('links.json 数据获取成功:', linksData.length, '条记录');
-            
-            const gridItems = document.querySelectorAll('.grid-item');
-            
-            gridItems.forEach(item => {
-                const titleElement = item.querySelector('h4');
-                if (!titleElement) return;
-                
-                const softwareTitle = titleElement.innerText.trim();
-                
-                // 精确匹配：查找所有 linksData 中 name 以 softwareTitle 开头的条目
-                // 同时转换为小写进行不区分大小写的比较
-                const matchingVersions = linksData
-                    .filter(linkItem => linkItem.name.toLowerCase().startsWith(softwareTitle.toLowerCase()))
-                    .map(linkItem => linkItem.name); // 获取完整名称
-                
-                if (matchingVersions.length > 0) {
-                    console.log(`更新 "${softwareTitle}" 的 data-versions 为:`, matchingVersions);
-                    // 直接将找到的完整名称数组存储起来
-                    item.setAttribute('data-versions', JSON.stringify(matchingVersions));
-                } else {
-                    // 如果没有找到匹配项，移除可能存在的旧属性
-                    if (item.hasAttribute('data-versions')) {
-                        item.removeAttribute('data-versions');
-                    }
-                    // console.log(`未找到 "${softwareTitle}" 的匹配版本`);
-                }
-            });
-            
-            console.log('grid-item 版本信息更新完成');
-            
-            // 确保数据处理完成后再绑定点击事件
-            console.log('现在设置 grid-item 点击事件...');
-            setupGridItemClickEvents(); 
-            console.log('grid-item 点击事件设置完成');
-
-        })
-        .catch(error => {
-            console.error('更新grid-item版本信息失败:', error);
-            console.warn('即使更新失败，也尝试设置 grid-item 点击事件...');
-            setupGridItemClickEvents(); // 即使失败也绑定事件
-        });
-        
 }
