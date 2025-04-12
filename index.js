@@ -194,9 +194,12 @@ function setupGridItemClickEvents() {
     console.log('DOM 加载完成，添加 grid-item 点击事件');
     
     document.querySelectorAll('.grid-item').forEach((item, index) => {
-        console.log(`检查 grid-item #${index}:`, item.querySelector('h4')?.innerText || '未知软件', 
-            '是否有版本属性:', item.hasAttribute('data-versions'), 
-            item.getAttribute('data-versions'));
+        const title = item.querySelector('h4')?.innerText || '未知软件';
+        const hasVersions = item.hasAttribute('data-versions') && item.getAttribute('data-versions');
+        
+        console.log(`检查 grid-item #${index}: ${title} 是否有版本属性:`, 
+            hasVersions ? true : false, 
+            hasVersions ? item.getAttribute('data-versions') : null);
             
         item.addEventListener('click', function() {
             // 获取软件名称
@@ -207,7 +210,7 @@ function setupGridItemClickEvents() {
             removeExistingOverlays('.version-overlay');
             
             // 检查是否有自定义版本属性
-            if (this.hasAttribute('data-versions')) {
+            if (this.hasAttribute('data-versions') && this.getAttribute('data-versions')) {
                 try {
                     // 尝试解析data-versions属性中的JSON数组
                     const versionsAttr = this.getAttribute('data-versions');
@@ -216,16 +219,38 @@ function setupGridItemClickEvents() {
                     openCustomVersionPage(softwareName, versions);
                 } catch (error) {
                     console.error('解析data-versions属性失败:', error, '软件名称:', softwareName);
-                    // 如果解析失败，使用默认版本页面
-                    openVersionPage(softwareName);
+                    // 如果解析失败，使用预定义linksData查找版本
+                    findVersionsInLinksData(softwareName);
                 }
             } else {
-                // 使用原有的版本页面函数
-                console.log('使用默认版本页面:', softwareName);
-                openVersionPage(softwareName);
+                // 使用预定义linksData查找版本
+                findVersionsInLinksData(softwareName);
             }
         });
     });
+}
+
+// 新增函数：从预定义的linksData查找版本
+function findVersionsInLinksData(softwareName) {
+    console.log('在预定义linksData中查找版本:', softwareName);
+    
+    // 检查是否存在全局预定义的linksData
+    if (typeof linksData !== 'undefined' && Array.isArray(linksData)) {
+        // 在linksData中匹配版本
+        const matchingVersions = linksData
+            .filter(linkItem => linkItem.name.toLowerCase().includes(softwareName.toLowerCase()))
+            .map(linkItem => linkItem.name);
+            
+        if (matchingVersions.length > 0) {
+            console.log(`找到匹配版本:`, matchingVersions);
+            openCustomVersionPage(softwareName, matchingVersions);
+            return;
+        }
+    }
+    
+    // 预定义数据中没找到，使用默认版本页面
+    console.log('使用默认版本页面:', softwareName);
+    openVersionPage(softwareName);
 }
 
 // 创建覆盖层的通用函数
@@ -472,133 +497,37 @@ function openCustomVersionPage(softwareName, versionsList) {
 function updateGridItemVersions() {
     console.log('开始更新grid-item的版本信息...');
     
-    // 获取仓库名称，适应GitHub Pages部署
-    const repoPath = location.pathname.split('/')[1] || '';
-    const jsonPath = repoPath ? `/${repoPath}/src/links.json` : '/src/links.json';
+    // 始终设置点击事件，不管JSON是否成功加载
+    setupGridItemClickEvents();
     
-    fetch(jsonPath)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('获取links.json失败');
-            }
-            return response.json();
-        })
-        .then(linksData => {
-            console.log('links.json 数据获取成功:', linksData.length, '条记录');
-            
-            const gridItems = document.querySelectorAll('.grid-item');
-            
-            gridItems.forEach(item => {
-                // 如果已经有手动设置的data-versions，则跳过自动更新
-                if (item.hasAttribute('data-versions') && item.getAttribute('data-versions')) {
-                    console.log('发现手动设置的data-versions，保留原值:', item.getAttribute('data-versions'));
-                    return;
-                }
-                
-                const titleElement = item.querySelector('h4');
-                if (!titleElement) return;
-                
-                const softwareTitle = titleElement.innerText.trim();
-                
-                // 精确匹配：查找所有 linksData 中 name 包含 softwareTitle 的条目
-                const matchingVersions = linksData
-                    .filter(linkItem => linkItem.name.toLowerCase().includes(softwareTitle.toLowerCase()))
-                    .map(linkItem => linkItem.name); // 获取完整名称
-                
-                if (matchingVersions.length > 0) {
-                    console.log(`更新 "${softwareTitle}" 的 data-versions 为:`, matchingVersions);
-                    // 直接将找到的完整名称数组存储起来
-                    item.setAttribute('data-versions', JSON.stringify(matchingVersions));
-                } else {
-                    // 如果没有找到匹配项，移除可能存在的旧属性
-                    if (item.hasAttribute('data-versions')) {
-                        item.removeAttribute('data-versions');
-                    }
-                    // console.log(`未找到 "${softwareTitle}" 的匹配版本`);
-                }
-            });
-            
-            console.log('grid-item 版本信息更新完成');
-            
-            // 确保数据处理完成后再绑定点击事件
-            console.log('现在设置 grid-item 点击事件...');
-            setupGridItemClickEvents(); 
-            console.log('grid-item 点击事件设置完成');
-
-        })
-        .catch(error => {
-            console.error('更新grid-item版本信息失败:', error);
-            console.warn('尝试设置 grid-item 点击事件...');
-            setupGridItemClickEvents(); // 即使失败也绑定事件
-        });
+    // 其余代码保持不变...
+    // 此处可以删除，因为我们已经直接在HTML中嵌入了linksData
+    // 并且我们已经在setupGridItemClickEvents中处理了逻辑
 }
 
 // 修改getDownloadLink函数，支持自定义链接和多路径
 function getDownloadLink(softwareName, linkType) {
     console.log(`获取 ${softwareName} 的 ${linkType} 下载链接`);
     
-    // 首先检查是否有自定义版本链接
-    if (customVersionLinks[softwareName]) {
-        const link = linkType === 'baidu' ? 
-            customVersionLinks[softwareName].baidu : 
-            customVersionLinks[softwareName].thunder;
+    // 首先在预定义的 linksData 中查找
+    if (typeof linksData !== 'undefined' && Array.isArray(linksData)) {
+        const normalizedSoftwareName = softwareName.toLowerCase().trim();
+        const foundSoftware = linksData.find(item => 
+            item.name.toLowerCase().trim() === normalizedSoftwareName
+        );
         
-        if (link) {
-            window.open(link, '_blank');
-            return;
+        if (foundSoftware) {
+            const link = linkType === 'baidu' ? foundSoftware.baidu : foundSoftware.thunder;
+            if (link) {
+                window.open(link, '_blank');
+                return;
+            }
         }
     }
     
-    // 尝试不同的路径来适应GitHub Pages
-    const repoPath = location.pathname.split('/')[1] || '';
-    const jsonPaths = [
-        './src/links.json',
-        '/src/links.json',
-        `/${repoPath}/src/links.json`,
-        'src/links.json'
-    ];
-    
-    // 尝试所有可能的路径
-    tryFetchPaths(jsonPaths, 0);
-    
-    function tryFetchPaths(paths, index) {
-        if (index >= paths.length) {
-            // 所有路径都尝试过了，显示未找到提示
-            console.log(`未找到 ${softwareName} 的 ${linkType} 下载链接`);
-            showLinkNotFoundOverlay();
-            return;
-        }
-        
-        fetch(paths[index])
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('获取链接数据失败');
-                }
-                return response.json();
-            })
-            .then(linksData => {
-                const normalizedSoftwareName = softwareName.toLowerCase().trim();
-                const foundSoftware = linksData.find(item => 
-                    item.name.toLowerCase().trim() === normalizedSoftwareName
-                );
-                
-                if (foundSoftware) {
-                    const link = linkType === 'baidu' ? foundSoftware.baidu : foundSoftware.thunder;
-                    if (link) {
-                        window.open(link, '_blank');
-                        return;
-                    }
-                }
-                
-                // 尝试下一个路径
-                tryFetchPaths(paths, index + 1);
-            })
-            .catch(error => {
-                console.error(`尝试路径 ${paths[index]} 失败:`, error);
-                // 尝试下一个路径
-                tryFetchPaths(paths, index + 1);
-            });
-    }
+    // 如果没有找到匹配的软件或链接，显示错误提示
+    console.log(`未找到 ${softwareName} 的 ${linkType} 下载链接`);
+    showLinkNotFoundOverlay();
 }
 
 // 显示链接未找到的提示覆盖层
@@ -695,6 +624,6 @@ function showContactOverlay(requestType) {
         }
     });
     
-    // 添加到 body
+    // 添加到 body里面
     document.body.appendChild(contactOverlay);
 }
