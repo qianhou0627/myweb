@@ -209,48 +209,188 @@ function setupGridItemClickEvents() {
             // 移除可能已存在的覆盖层
             removeExistingOverlays('.version-overlay');
             
-            // 检查是否有自定义版本属性
+            // 优先级1: 使用HTML中的data-versions属性
             if (this.hasAttribute('data-versions') && this.getAttribute('data-versions')) {
                 try {
-                    // 尝试解析data-versions属性中的JSON数组
                     const versionsAttr = this.getAttribute('data-versions');
                     console.log('解析data-versions:', softwareName, versionsAttr);
                     const versions = JSON.parse(versionsAttr);
                     openCustomVersionPage(softwareName, versions);
+                    return; // 找到并使用了data-versions，直接返回
                 } catch (error) {
                     console.error('解析data-versions属性失败:', error, '软件名称:', softwareName);
-                    // 如果解析失败，使用预定义linksData查找版本
-                    findVersionsInLinksData(softwareName);
+                    // 解析失败，继续尝试其他方法
                 }
-            } else {
-                // 使用预定义linksData查找版本
-                findVersionsInLinksData(softwareName);
             }
+            
+            // 优先级2: 使用预定义的linksData
+            if (typeof linksData !== 'undefined' && Array.isArray(linksData)) {
+                const matchingVersions = linksData
+                    .filter(linkItem => linkItem.name.toLowerCase().includes(softwareName.toLowerCase()))
+                    .map(linkItem => linkItem.name);
+                    
+                if (matchingVersions.length > 0) {
+                    console.log(`在预定义linksData中找到匹配版本:`, matchingVersions);
+                    openCustomVersionPage(softwareName, matchingVersions);
+                    return; // 找到并使用了linksData，直接返回
+                }
+            }
+            
+            // 优先级3: 尝试从JSON文件加载
+            tryLoadVersionsFromJSON(softwareName, (jsonVersions) => {
+                if (jsonVersions && jsonVersions.length > 0) {
+                    console.log(`从JSON文件找到匹配版本:`, jsonVersions);
+                    openCustomVersionPage(softwareName, jsonVersions);
+                } else {
+                    // 优先级4: 最后才使用默认模板
+                    console.log('使用默认版本模板:', softwareName);
+                    openVersionPage(softwareName);
+                }
+            });
         });
     });
 }
 
-// 新增函数：从预定义的linksData查找版本
-function findVersionsInLinksData(softwareName) {
-    console.log('在预定义linksData中查找版本:', softwareName);
+// 新增函数：尝试从JSON文件加载版本数据
+function tryLoadVersionsFromJSON(softwareName, callback) {
+    console.log('尝试从JSON文件加载版本数据:', softwareName);
     
-    // 检查是否存在全局预定义的linksData
-    if (typeof linksData !== 'undefined' && Array.isArray(linksData)) {
-        // 在linksData中匹配版本
-        const matchingVersions = linksData
-            .filter(linkItem => linkItem.name.toLowerCase().includes(softwareName.toLowerCase()))
-            .map(linkItem => linkItem.name);
-            
-        if (matchingVersions.length > 0) {
-            console.log(`找到匹配版本:`, matchingVersions);
-            openCustomVersionPage(softwareName, matchingVersions);
+    // 尝试不同的可能路径
+    const repoPath = location.pathname.split('/')[1] || '';
+    const jsonPaths = [
+        './src/links.json',
+        '/src/links.json',
+        `/${repoPath}/src/links.json`,
+        'src/links.json'
+    ];
+    
+    let pathIndex = 0;
+    tryNextPath();
+    
+    function tryNextPath() {
+        if (pathIndex >= jsonPaths.length) {
+            // 所有路径都尝试过了，没有找到有效数据
+            callback(null);
             return;
+        }
+        
+        const currentPath = jsonPaths[pathIndex++];
+        console.log(`尝试从 ${currentPath} 加载数据...`);
+        
+        fetch(currentPath)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`获取 ${currentPath} 失败，状态码 ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(jsonData => {
+                if (!Array.isArray(jsonData)) {
+                    throw new Error('加载的数据不是有效数组');
+                }
+                
+                // 在JSON数据中匹配版本
+                const matchingVersions = jsonData
+                    .filter(item => item.name && item.name.toLowerCase().includes(softwareName.toLowerCase()))
+                    .map(item => item.name);
+                
+                callback(matchingVersions);
+            })
+            .catch(error => {
+                console.warn(`从 ${currentPath} 加载失败:`, error);
+                // 尝试下一个路径
+                tryNextPath();
+            });
+    }
+}
+
+// 修改 getDownloadLink 函数以遵循相同的优先级
+function getDownloadLink(softwareName, linkType) {
+    console.log(`获取 ${softwareName} 的 ${linkType} 下载链接`);
+    
+    // 优先级1: 检查预定义的 linksData
+    if (typeof linksData !== 'undefined' && Array.isArray(linksData)) {
+        const normalizedSoftwareName = softwareName.toLowerCase().trim();
+        const foundSoftware = linksData.find(item => 
+            item.name.toLowerCase().trim() === normalizedSoftwareName
+        );
+        
+        if (foundSoftware) {
+            const link = linkType === 'baidu' ? foundSoftware.baidu : foundSoftware.thunder;
+            if (link) {
+                window.open(link, '_blank');
+                return;
+            }
         }
     }
     
-    // 预定义数据中没找到，使用默认版本页面
-    console.log('使用默认版本页面:', softwareName);
-    openVersionPage(softwareName);
+    // 优先级2: 尝试从JSON文件加载链接
+    tryLoadLinksFromJSON(softwareName, linkType, (link) => {
+        if (link) {
+            window.open(link, '_blank');
+        } else {
+            // 最后才显示错误提示
+            console.log(`未找到 ${softwareName} 的 ${linkType} 下载链接`);
+            showLinkNotFoundOverlay();
+        }
+    });
+}
+
+// 新增函数：尝试从JSON文件加载下载链接
+function tryLoadLinksFromJSON(softwareName, linkType, callback) {
+    // 类似tryLoadVersionsFromJSON的逻辑，但专注于获取下载链接
+    const repoPath = location.pathname.split('/')[1] || '';
+    const jsonPaths = [
+        './src/links.json',
+        '/src/links.json',
+        `/${repoPath}/src/links.json`,
+        'src/links.json'
+    ];
+    
+    let pathIndex = 0;
+    tryNextPath();
+    
+    function tryNextPath() {
+        if (pathIndex >= jsonPaths.length) {
+            // 所有路径都尝试过了，没有找到有效链接
+            callback(null);
+            return;
+        }
+        
+        const currentPath = jsonPaths[pathIndex++];
+        
+        fetch(currentPath)
+            .then(response => {
+                if (!response.ok) throw new Error('获取链接数据失败');
+                return response.json();
+            })
+            .then(jsonData => {
+                const normalizedSoftwareName = softwareName.toLowerCase().trim();
+                const foundSoftware = jsonData.find(item => 
+                    item.name.toLowerCase().trim() === normalizedSoftwareName
+                );
+                
+                if (foundSoftware) {
+                    const link = linkType === 'baidu' ? foundSoftware.baidu : foundSoftware.thunder;
+                    callback(link);
+                } else {
+                    // 尝试下一个路径
+                    tryNextPath();
+                }
+            })
+            .catch(error => {
+                console.warn(`从 ${currentPath} 加载链接失败:`, error);
+                // 尝试下一个路径
+                tryNextPath();
+            });
+    }
+}
+
+// 修改 updateGridItemVersions 函数，只负责设置点击事件
+function updateGridItemVersions() {
+    console.log('设置grid-item点击事件...');
+    // 直接设置点击事件，不再尝试预加载版本信息
+    setupGridItemClickEvents();
 }
 
 // 创建覆盖层的通用函数
@@ -491,43 +631,6 @@ function openCustomVersionPage(softwareName, versionsList) {
     console.log('添加版本选择覆盖层到页面');
     // 添加到body
     document.body.appendChild(overlay);
-}
-
-// 修改updateGridItemVersions函数，增强错误处理
-function updateGridItemVersions() {
-    console.log('开始更新grid-item的版本信息...');
-    
-    // 始终设置点击事件，不管JSON是否成功加载
-    setupGridItemClickEvents();
-    
-    // 其余代码保持不变...
-    // 此处可以删除，因为我们已经直接在HTML中嵌入了linksData
-    // 并且我们已经在setupGridItemClickEvents中处理了逻辑
-}
-
-// 修改getDownloadLink函数，支持自定义链接和多路径
-function getDownloadLink(softwareName, linkType) {
-    console.log(`获取 ${softwareName} 的 ${linkType} 下载链接`);
-    
-    // 首先在预定义的 linksData 中查找
-    if (typeof linksData !== 'undefined' && Array.isArray(linksData)) {
-        const normalizedSoftwareName = softwareName.toLowerCase().trim();
-        const foundSoftware = linksData.find(item => 
-            item.name.toLowerCase().trim() === normalizedSoftwareName
-        );
-        
-        if (foundSoftware) {
-            const link = linkType === 'baidu' ? foundSoftware.baidu : foundSoftware.thunder;
-            if (link) {
-                window.open(link, '_blank');
-                return;
-            }
-        }
-    }
-    
-    // 如果没有找到匹配的软件或链接，显示错误提示
-    console.log(`未找到 ${softwareName} 的 ${linkType} 下载链接`);
-    showLinkNotFoundOverlay();
 }
 
 // 显示链接未找到的提示覆盖层
