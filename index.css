@@ -91,7 +91,7 @@ body {
     position: relative; /* 设置相对定位 */
     display: flex; /* 使用Flex布局 */
     flex-direction: column; /* 子元素垂直排列 */
-    width: calc(100% - 600px); /* 设置宽度，左右各留300px */
+    width: calc(100% - 4200px); /* 设置宽度，左右各留210px */
     padding: 1em; /* 设置内边距 */
     flex-wrap: wrap; /* 子元素换行 */
     gap: 1em; /* 子元素之间的间距 */
