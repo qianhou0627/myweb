@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     // 首先加载links.json并更新grid-item的data-versions属性
+    // 注意：setupGridItemClickEvents 会在 updateGridItemVersions 内部被调用
     updateGridItemVersions();
     
     // 顶部导航栏按钮切换
@@ -14,8 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // 监听滚动事件，确保顶部导航栏始终固定
     setupScrollHandler();
     
-    // 为所有软件添加点击事件
-    setupGridItemClickEvents();
+    // 不再在这里直接调用 setupGridItemClickEvents
 });
 
 // 顶部导航和侧边栏导航设置
@@ -595,7 +595,6 @@ function showContactOverlay(requestType) {
 function updateGridItemVersions() {
     console.log('开始更新grid-item的版本信息...');
     
-    // 加载links.json文件
     fetch('./src/links.json')
         .then(response => {
             if (!response.ok) {
@@ -604,72 +603,47 @@ function updateGridItemVersions() {
             return response.json();
         })
         .then(linksData => {
-            // 将links.json数据按软件名称分组
-            const softwareGroups = {};
+            console.log('links.json 数据获取成功:', linksData.length, '条记录');
             
-            linksData.forEach(item => {
-                // 直接使用JSON中的软件名称，不做修改
-                const name = item.name;
-                
-                // 提取软件基础名称（用于匹配）
-                // 如 "Matlab R2022b" 提取为 "Matlab"
-                const baseName = name.split(/\s+/)[0].trim();
-                
-                // 确保baseName不为空
-                if (!baseName) {
-                    console.warn('无法确定软件基础名称:', name);
-                    return;
-                }
-                
-                // 创建或更新分组
-                if (!softwareGroups[baseName]) {
-                    softwareGroups[baseName] = [];
-                }
-                softwareGroups[baseName].push(name);
-            });
-            
-            console.log('软件分组结果:', softwareGroups);
-            
-            // 获取所有grid-item元素
             const gridItems = document.querySelectorAll('.grid-item');
             
-            // 遍历所有grid-item，查找匹配的软件名称并更新data-versions
             gridItems.forEach(item => {
                 const titleElement = item.querySelector('h4');
                 if (!titleElement) return;
                 
                 const softwareTitle = titleElement.innerText.trim();
                 
-                // 从标题中提取基础名称，用于匹配
-                const baseSoftwareTitle = softwareTitle.split(/\s+/)[0].trim();
+                // 精确匹配：查找所有 linksData 中 name 以 softwareTitle 开头的条目
+                // 同时转换为小写进行不区分大小写的比较
+                const matchingVersions = linksData
+                    .filter(linkItem => linkItem.name.toLowerCase().startsWith(softwareTitle.toLowerCase()))
+                    .map(linkItem => linkItem.name); // 获取完整名称
                 
-                // 查找匹配的软件组
-                let versions = null;
-                if (softwareGroups[baseSoftwareTitle]) {
-                    versions = softwareGroups[baseSoftwareTitle];
-                    console.log(`找到精确匹配: grid-item "${softwareTitle}" 匹配软件组 "${baseSoftwareTitle}"`);
+                if (matchingVersions.length > 0) {
+                    console.log(`更新 "${softwareTitle}" 的 data-versions 为:`, matchingVersions);
+                    // 直接将找到的完整名称数组存储起来
+                    item.setAttribute('data-versions', JSON.stringify(matchingVersions));
                 } else {
-                    // 尝试进行模糊匹配
-                    for (const [baseName, versionsList] of Object.entries(softwareGroups)) {
-                        if (softwareTitle.toLowerCase().includes(baseName.toLowerCase()) || 
-                            baseName.toLowerCase().includes(softwareTitle.toLowerCase())) {
-                            versions = versionsList;
-                            console.log(`找到模糊匹配: grid-item "${softwareTitle}" 匹配软件组 "${baseName}"`);
-                            break;
-                        }
+                    // 如果没有找到匹配项，移除可能存在的旧属性
+                    if (item.hasAttribute('data-versions')) {
+                        item.removeAttribute('data-versions');
                     }
-                }
-                
-                // 如果找到匹配的版本列表，更新data-versions属性
-                if (versions && versions.length > 0) {
-                    console.log(`更新 "${softwareTitle}" 的data-versions为:`, versions);
-                    item.setAttribute('data-versions', JSON.stringify(versions));
+                    // console.log(`未找到 "${softwareTitle}" 的匹配版本`);
                 }
             });
             
-            console.log('grid-item版本信息更新完成');
+            console.log('grid-item 版本信息更新完成');
+            
+            // 确保数据处理完成后再绑定点击事件
+            console.log('现在设置 grid-item 点击事件...');
+            setupGridItemClickEvents(); 
+            console.log('grid-item 点击事件设置完成');
+
         })
         .catch(error => {
             console.error('更新grid-item版本信息失败:', error);
+            console.warn('即使更新失败，也尝试设置 grid-item 点击事件...');
+            setupGridItemClickEvents(); // 即使失败也绑定事件
         });
+        
 }
