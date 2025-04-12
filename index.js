@@ -1,3 +1,20 @@
+// 添加自定义版本下载链接映射 - 放在文件顶部全局作用域
+const customVersionLinks = {
+    "7-Zip": {
+        baidu: "https://pan.baidu.com/s/your_7zip_link",
+        thunder: "thunder://your_7zip_thunder_link"
+    },
+    "WinRAR": {
+        baidu: "https://pan.baidu.com/s/your_winrar_link",
+        thunder: "thunder://your_winrar_thunder_link"
+    },
+    "Bandizip": {
+        baidu: "https://pan.baidu.com/s/your_bandizip_link",
+        thunder: "thunder://your_bandizip_thunder_link"
+    }
+    // 添加更多版本的链接
+};
+
 document.addEventListener('DOMContentLoaded', function() {
     // 首先加载links.json并更新grid-item的data-versions属性
     // 注意：setupGridItemClickEvents 会在 updateGridItemVersions 内部被调用
@@ -451,11 +468,15 @@ function openCustomVersionPage(softwareName, versionsList) {
     document.body.appendChild(overlay);
 }
 
-// 添加自动更新grid-item版本信息的函数
+// 修改updateGridItemVersions函数，增强错误处理
 function updateGridItemVersions() {
     console.log('开始更新grid-item的版本信息...');
     
-    fetch('/src/links.json')
+    // 获取仓库名称，适应GitHub Pages部署
+    const repoPath = location.pathname.split('/')[1] || '';
+    const jsonPath = repoPath ? `/${repoPath}/src/links.json` : '/src/links.json';
+    
+    fetch(jsonPath)
         .then(response => {
             if (!response.ok) {
                 throw new Error('获取links.json失败');
@@ -507,94 +528,78 @@ function updateGridItemVersions() {
         })
         .catch(error => {
             console.error('更新grid-item版本信息失败:', error);
-            console.warn('即使更新失败，也尝试设置 grid-item 点击事件...');
+            console.warn('尝试设置 grid-item 点击事件...');
             setupGridItemClickEvents(); // 即使失败也绑定事件
         });
 }
-const customVersionLinks = {
-    "7-Zip": {
-        baidu: "https://www.7-zip.org/download.html",
-    },
-    "WinRAR": {
-        baidu: "https://pan.baidu.com/s/",
-    },
-    "Bandizip": {
-        baidu: "https://pan.baidu.com/s/",
-    },
-    "Googel Chrome": {
-        baidu: "https://pan.baidu.com/s/",
-    },
-    "Edge": {
-        baidu: "https://www.microsoft.com/zh-cn/edge/download?form=MA13FJ",
-    },
-    "火绒安全软件": {
-        baidu: "https://huorong.cn/person5.html",
-    },
-    "360安全卫士 (是垃圾！)": {
-        baidu: "https://pan.baidu.com/s/",
-    },
-    "腾讯电脑管家（是垃圾！）": {
-        baidu: "https://pan.baidu.com/s/",
-    },  
-    "金山毒霸（是垃圾！）": {
-        baidu: "https://pan.baidu.com/s/",
-    },
-    "potplayer": {
-        baidu: "https://potplayer.tv/?lang=zh_CN",
-    },
-}
 
-// 从本地JSON文件获取下载链接
+// 修改getDownloadLink函数，支持自定义链接和多路径
 function getDownloadLink(softwareName, linkType) {
     console.log(`获取 ${softwareName} 的 ${linkType} 下载链接`);
     
-    // 加载链接数据
-    fetch('./src/links.json')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('获取链接数据失败');
-            }
-            return response.json();
-        })
-        .then(linksData => {
-            // 将软件名称标准化（转小写并去除多余空格）
-            const normalizedSoftwareName = softwareName.toLowerCase().trim();
-            
-            // 尝试匹配软件名称
-            const foundSoftware = linksData.find(item => 
-                item.name.toLowerCase().trim() === normalizedSoftwareName
-            );
-            
-            if (foundSoftware) {
-                // 根据类型获取下载链接
-                const link = linkType === 'baidu' ? foundSoftware.baidu : foundSoftware.thunder;
-                
-                if (link) {
-                    // 打开新窗口访问链接
-                    window.open(link, '_blank');
-                    return;
-                }
-            } else if (customVersionLinks[softwareName]) {
-                // 尝试从自定义映射中获取
-                const link = linkType === 'baidu' ? 
-                    customVersionLinks[softwareName].baidu : 
-                    customVersionLinks[softwareName].thunder;
-                
-                if (link) {
-                    window.open(link, '_blank');
-                    return;
-                }
-            }
-            
-            // 如果没有找到匹配的软件或链接，显示错误提示
+    // 首先检查是否有自定义版本链接
+    if (customVersionLinks[softwareName]) {
+        const link = linkType === 'baidu' ? 
+            customVersionLinks[softwareName].baidu : 
+            customVersionLinks[softwareName].thunder;
+        
+        if (link) {
+            window.open(link, '_blank');
+            return;
+        }
+    }
+    
+    // 尝试不同的路径来适应GitHub Pages
+    const repoPath = location.pathname.split('/')[1] || '';
+    const jsonPaths = [
+        './src/links.json',
+        '/src/links.json',
+        `/${repoPath}/src/links.json`,
+        'src/links.json'
+    ];
+    
+    // 尝试所有可能的路径
+    tryFetchPaths(jsonPaths, 0);
+    
+    function tryFetchPaths(paths, index) {
+        if (index >= paths.length) {
+            // 所有路径都尝试过了，显示未找到提示
             console.log(`未找到 ${softwareName} 的 ${linkType} 下载链接`);
             showLinkNotFoundOverlay();
-        })
-        .catch(error => {
-            console.error('获取下载链接数据失败:', error);
-            showLinkNotFoundOverlay();
-        });
-} 
+            return;
+        }
+        
+        fetch(paths[index])
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('获取链接数据失败');
+                }
+                return response.json();
+            })
+            .then(linksData => {
+                const normalizedSoftwareName = softwareName.toLowerCase().trim();
+                const foundSoftware = linksData.find(item => 
+                    item.name.toLowerCase().trim() === normalizedSoftwareName
+                );
+                
+                if (foundSoftware) {
+                    const link = linkType === 'baidu' ? foundSoftware.baidu : foundSoftware.thunder;
+                    if (link) {
+                        window.open(link, '_blank');
+                        return;
+                    }
+                }
+                
+                // 尝试下一个路径
+                tryFetchPaths(paths, index + 1);
+            })
+            .catch(error => {
+                console.error(`尝试路径 ${paths[index]} 失败:`, error);
+                // 尝试下一个路径
+                tryFetchPaths(paths, index + 1);
+            });
+    }
+}
 
 // 显示链接未找到的提示覆盖层
 function showLinkNotFoundOverlay() {
