@@ -2173,5 +2173,39 @@
             });
         });
     </script>
+    <!-- 导航菜单覆盖层 -->
+    <script>
+        // 在页面加载完成后获取links.json
+        document.addEventListener('DOMContentLoaded', function() {
+            fetchLinksData();
+        });
+
+        // 获取links.json数据的函数
+        function fetchLinksData() {
+            fetch('links.json')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('网络响应不正常');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('获取到最新的links.json数据:', data);
+                    // 处理获取到的数据
+                    updateUIWithLinksData(data);
+                })
+                .catch(error => {
+                    console.error('获取links.json失败:', error);
+                });
+        }
+
+        // 使用获取到的数据更新UI
+        function updateUIWithLinksData(data) {
+            // 根据获取到的数据更新页面元素
+            // 例如：更新软件列表、链接等
+            // 这里需要根据您的具体需求来实现
+        }
+    </script>
+    <!-- 导航菜单覆盖层 -->
 </body>
 </html>
