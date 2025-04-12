@@ -190,25 +190,13 @@ function setupScrollHandler() {
     });
 }
 
-// 为所有软件添加点击事件
+// 为所有软件添加点击事件 - 完全重构执行逻辑
 function setupGridItemClickEvents() {
     console.log('DOM 加载完成，添加 grid-item 点击事件');
     
-    // 先看看所有grid-item元素上的原始属性，进行更详细的记录
-    document.querySelectorAll('.grid-item').forEach((item, index) => {
-        console.log(`详细检查 grid-item #${index} 所有属性:`, 
-                    Array.from(item.attributes).map(attr => `${attr.name}=${attr.value}`).join(', '),
-                    '内部HTML:', item.innerHTML.substring(0, 50) + '...');
-    });
-    
     document.querySelectorAll('.grid-item').forEach((item, index) => {
         const title = item.querySelector('h4')?.innerText || '未知软件';
-        const hasVersions = item.hasAttribute('data-versions') && item.getAttribute('data-versions');
         
-        console.log(`检查 grid-item #${index}: ${title} 是否有版本属性:`, 
-            hasVersions ? true : false, 
-            hasVersions ? item.getAttribute('data-versions') : null);
-            
         item.addEventListener('click', function() {
             // 获取软件名称
             const softwareName = this.querySelector('h4').innerText;
@@ -217,51 +205,137 @@ function setupGridItemClickEvents() {
             // 移除可能已存在的覆盖层
             removeExistingOverlays('.version-overlay');
             
-            // 优先级1: 使用HTML中的data-versions属性
-            if (this.hasAttribute('data-versions') && this.getAttribute('data-versions')) {
-                try {
-                    const versionsAttr = this.getAttribute('data-versions');
-                    console.log('解析data-versions:', softwareName, versionsAttr);
-                    const versions = JSON.parse(versionsAttr);
-                    openCustomVersionPage(softwareName, versions);
-                    return; // 找到并使用了data-versions，直接返回
-                } catch (error) {
-                    console.error('解析data-versions属性失败:', error, '软件名称:', softwareName);
-                    // 解析失败，继续尝试其他方法
-                }
-            }
-            
-            // 优先级2: 使用预定义的linksData
-            if (typeof linksData !== 'undefined' && Array.isArray(linksData)) {
-                const matchingVersions = linksData
-                    .filter(linkItem => linkItem.name.toLowerCase().includes(softwareName.toLowerCase()))
-                    .map(linkItem => linkItem.name);
-                    
-                if (matchingVersions.length > 0) {
-                    console.log(`在预定义linksData中找到匹配版本:`, matchingVersions);
-                    openCustomVersionPage(softwareName, matchingVersions);
-                    return; // 找到并使用了linksData，直接返回
-                }
-            }
-            
-            // 优先级3: 尝试从JSON文件加载
-            tryLoadVersionsFromJSON(softwareName, (jsonVersions) => {
-                if (jsonVersions && jsonVersions.length > 0) {
-                    console.log(`从JSON文件找到匹配版本:`, jsonVersions);
-                    openCustomVersionPage(softwareName, jsonVersions);
-                } else {
-                    // 优先级4: 最后才使用默认模板
-                    console.log('使用默认版本模板:', softwareName);
-                    openVersionPage(softwareName);
-                }
-            });
+            // 生成版本并显示版本页面
+            processVersions(this, softwareName);
         });
     });
 }
 
-// 新增函数：尝试从JSON文件加载版本数据
+// 新的版本处理逻辑
+function processVersions(gridItem, softwareName) {
+    // 步骤1：先获取默认版本作为基础
+    console.log('步骤1: 使用默认模板生成基础版本');
+    let versions = generateVersions(softwareName);
+    let versionSource = "default";
+    
+    // 创建覆盖层和基础容器 - 先展示内容，后续再更新
+    const overlay = createOverlay();
+    const container = document.createElement('div');
+    container.className = 'version-container';
+    
+    // 更新版本显示函数
+    function updateVersionDisplay(newVersions, source) {
+        console.log(`从${source}更新版本显示:`, newVersions);
+        versions = newVersions;
+        versionSource = source;
+        
+        // 清除旧内容
+        container.innerHTML = '';
+        
+        // 添加组件
+        const closeButton = createCloseButton('close-version-page', overlay);
+        const topButtons = createTopButtons();
+        const versionList = document.createElement('div');
+        versionList.className = 'version-list';
+        
+        // 显示版本列表
+        versions.forEach((version, index) => {
+            const versionItem = document.createElement('div');
+            versionItem.className = 'version-item';
+            
+            const versionName = document.createElement('div');
+            versionName.className = 'version-name';
+            
+            // 判断版本是否为字符串或对象
+            const versionText = typeof version === 'string' ? version : version.name;
+            versionName.innerHTML = `<span class="version-dot" style="background-color: ${getColorByIndex(index)};"></span>${versionText}`;
+            
+            const downloadButtons = createDownloadButtons(versionText);
+            
+            versionItem.appendChild(versionName);
+            versionItem.appendChild(downloadButtons);
+            
+            versionList.appendChild(versionItem);
+        });
+        
+        const bottomText = createBottomText();
+        
+        // 组装各部分
+        container.appendChild(closeButton);
+        container.appendChild(topButtons);
+        container.appendChild(versionList);
+        container.appendChild(bottomText);
+    }
+    
+    // 初始显示默认版本
+    updateVersionDisplay(versions, "默认模板");
+    overlay.appendChild(container);
+    document.body.appendChild(overlay);
+    
+    // 步骤2：尝试从JSON文件加载数据
+    console.log('步骤2: 尝试从JSON文件加载数据');
+    tryLoadVersionsFromJSON(softwareName, (jsonVersions) => {
+        if (jsonVersions && jsonVersions.length > 0) {
+            console.log('JSON数据加载成功，更新版本显示');
+            updateVersionDisplay(jsonVersions, "JSON数据");
+            
+            // 步骤3：检查HTML元素上的data-versions属性
+            checkDataVersionsAttribute();
+        } else {
+            console.log('JSON数据未找到，直接检查data-versions属性');
+            // 没有JSON数据时，直接进行步骤3
+            checkDataVersionsAttribute();
+        }
+    });
+    
+    // 步骤3：检查HTML元素上的data-versions属性
+    function checkDataVersionsAttribute() {
+        console.log('步骤3: 检查data-versions属性');
+        if (gridItem.hasAttribute('data-versions') && gridItem.getAttribute('data-versions')) {
+            try {
+                const versionsAttr = gridItem.getAttribute('data-versions');
+                console.log('发现data-versions属性:', versionsAttr);
+                const customVersions = JSON.parse(versionsAttr);
+                
+                if (Array.isArray(customVersions) && customVersions.length > 0) {
+                    console.log('data-versions解析成功，使用自定义版本列表');
+                    updateVersionDisplay(customVersions, "HTML属性");
+                    
+                    // 打印最终使用的版本来源
+                    console.log('最终版本来源: HTML中的data-versions属性');
+                } else {
+                    console.log('data-versions属性为空数组，保持当前版本不变');
+                }
+            } catch (error) {
+                console.error('解析data-versions属性失败:', error);
+                // 解析失败时保持当前版本不变
+                console.log('最终版本来源:', versionSource);
+            }
+        } else {
+            console.log('未找到data-versions属性，保持当前版本不变');
+            console.log('最终版本来源:', versionSource);
+        }
+    }
+}
+
+// 尝试从JSON文件加载版本数据
 function tryLoadVersionsFromJSON(softwareName, callback) {
-    console.log('尝试从JSON文件加载版本数据:', softwareName);
+    // 如果预定义的linksData可用，直接使用而不发送网络请求
+    if (typeof linksData !== 'undefined' && Array.isArray(linksData)) {
+        console.log('使用预定义的linksData而不发送网络请求');
+        const matchingVersions = linksData
+            .filter(item => item.name.toLowerCase().includes(softwareName.toLowerCase()))
+            .map(item => item.name);
+            
+        if (matchingVersions.length > 0) {
+            console.log('在预定义linksData中找到匹配:', matchingVersions);
+            callback(matchingVersions);
+            return;
+        }
+    }
+    
+    // 如果没有预定义数据，尝试网络请求
+    console.log('没有预定义数据，尝试网络请求获取JSON');
     
     // 尝试不同的可能路径
     const repoPath = location.pathname.split('/')[1] || '';
@@ -312,11 +386,11 @@ function tryLoadVersionsFromJSON(softwareName, callback) {
     }
 }
 
-// 修改 getDownloadLink 函数以遵循相同的优先级
+// 修改下载链接获取函数
 function getDownloadLink(softwareName, linkType) {
     console.log(`获取 ${softwareName} 的 ${linkType} 下载链接`);
     
-    // 优先级1: 检查预定义的 linksData
+    // 首先检查预定义的linksData
     if (typeof linksData !== 'undefined' && Array.isArray(linksData)) {
         const normalizedSoftwareName = softwareName.toLowerCase().trim();
         const foundSoftware = linksData.find(item => 
@@ -332,69 +406,12 @@ function getDownloadLink(softwareName, linkType) {
         }
     }
     
-    // 优先级2: 尝试从JSON文件加载链接
-    tryLoadLinksFromJSON(softwareName, linkType, (link) => {
-        if (link) {
-            window.open(link, '_blank');
-        } else {
-            // 最后才显示错误提示
-            console.log(`未找到 ${softwareName} 的 ${linkType} 下载链接`);
-            showLinkNotFoundOverlay();
-        }
-    });
+    // 如果预定义数据中没有，显示"链接未找到"提示
+    console.log(`未找到 ${softwareName} 的 ${linkType} 下载链接`);
+    showLinkNotFoundOverlay();
 }
 
-// 新增函数：尝试从JSON文件加载下载链接
-function tryLoadLinksFromJSON(softwareName, linkType, callback) {
-    // 类似tryLoadVersionsFromJSON的逻辑，但专注于获取下载链接
-    const repoPath = location.pathname.split('/')[1] || '';
-    const jsonPaths = [
-        './src/links.json',
-        '/src/links.json',
-        `/${repoPath}/src/links.json`,
-        'src/links.json'
-    ];
-    
-    let pathIndex = 0;
-    tryNextPath();
-    
-    function tryNextPath() {
-        if (pathIndex >= jsonPaths.length) {
-            // 所有路径都尝试过了，没有找到有效链接
-            callback(null);
-            return;
-        }
-        
-        const currentPath = jsonPaths[pathIndex++];
-        
-        fetch(currentPath)
-            .then(response => {
-                if (!response.ok) throw new Error('获取链接数据失败');
-                return response.json();
-            })
-            .then(jsonData => {
-                const normalizedSoftwareName = softwareName.toLowerCase().trim();
-                const foundSoftware = jsonData.find(item => 
-                    item.name.toLowerCase().trim() === normalizedSoftwareName
-                );
-                
-                if (foundSoftware) {
-                    const link = linkType === 'baidu' ? foundSoftware.baidu : foundSoftware.thunder;
-                    callback(link);
-                } else {
-                    // 尝试下一个路径
-                    tryNextPath();
-                }
-            })
-            .catch(error => {
-                console.warn(`从 ${currentPath} 加载链接失败:`, error);
-                // 尝试下一个路径
-                tryNextPath();
-            });
-    }
-}
-
-// 修改 updateGridItemVersions 函数，只负责设置点击事件
+// 更新updateGridItemVersions函数，使其只设置点击事件
 function updateGridItemVersions() {
     console.log('设置grid-item点击事件...');
     // 直接设置点击事件，不再尝试预加载版本信息
