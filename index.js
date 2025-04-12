@@ -16,9 +16,10 @@ const customVersionLinks = {
 };
 
 document.addEventListener('DOMContentLoaded', function() {
-    // 首先加载links.json并更新grid-item的data-versions属性
-    // 注意：setupGridItemClickEvents 会在 updateGridItemVersions 内部被调用
-    updateGridItemVersions();
+    // 延迟一点时间再执行，确保DOM完全解析
+    setTimeout(function() {
+        updateGridItemVersions();
+    }, 100);
     
     // 顶部导航栏按钮切换
     setupNavigation();
@@ -192,6 +193,13 @@ function setupScrollHandler() {
 // 为所有软件添加点击事件
 function setupGridItemClickEvents() {
     console.log('DOM 加载完成，添加 grid-item 点击事件');
+    
+    // 先看看所有grid-item元素上的原始属性，进行更详细的记录
+    document.querySelectorAll('.grid-item').forEach((item, index) => {
+        console.log(`详细检查 grid-item #${index} 所有属性:`, 
+                    Array.from(item.attributes).map(attr => `${attr.name}=${attr.value}`).join(', '),
+                    '内部HTML:', item.innerHTML.substring(0, 50) + '...');
+    });
     
     document.querySelectorAll('.grid-item').forEach((item, index) => {
         const title = item.querySelector('h4')?.innerText || '未知软件';
