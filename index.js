@@ -741,3 +741,66 @@ function showContactOverlay(requestType) {
     // 添加到 body里面
     document.body.appendChild(contactOverlay);
 }
+
+// 修改预处理函数，使用h4精确匹配
+function preProcessAllVersions() {
+    console.log('开始预处理所有软件版本数据...');
+
+    // 获取所有软件项
+    const gridItems = document.querySelectorAll('.grid-item');
+    
+    gridItems.forEach((item, index) => {
+        const titleElement = item.querySelector('h4');
+        if (!titleElement) return;
+        
+        const h4Text = titleElement.innerText.trim();
+        console.log(`预处理 h4="${h4Text}" 的版本数据...`);
+        
+        // 1. 先创建默认版本数据
+        let versions = generateVersions(h4Text);
+        let versionSource = "默认模板";
+        
+        // 2. 检查HTML中的data-versions属性
+        if (item.hasAttribute('data-versions') && item.getAttribute('data-versions')) {
+            try {
+                const dataVersions = item.getAttribute('data-versions');
+                console.log(`  发现 "${h4Text}" 的data-versions属性:`, dataVersions);
+                const customVersions = JSON.parse(dataVersions);
+                
+                if (Array.isArray(customVersions) && customVersions.length > 0) {
+                    versions = customVersions;
+                    versionSource = "HTML属性";
+                    console.log(`  从HTML属性获取的版本:`, versions);
+                }
+            } catch (error) {
+                console.error(`  解析 "${h4Text}" 的data-versions失败:`, error);
+                // 保持默认版本不变
+            }
+        }
+        
+        // 3. 从linksData精确匹配h4获取版本
+        if (versionSource === "默认模板" && typeof linksData !== 'undefined' && Array.isArray(linksData)) {
+            // 筛选出所有h4字段匹配的项
+            const matchingItems = linksData.filter(linkItem => 
+                linkItem.h4 && linkItem.h4 === h4Text
+            );
+            
+            if (matchingItems.length > 0) {
+                const matchingVersions = matchingItems.map(item => item.name);
+                versions = matchingVersions;
+                versionSource = "JSON精确匹配";
+                console.log(`  通过h4精确匹配从JSON获取的版本:`, versions);
+            }
+        }
+        
+        // 存储预处理好的版本数据
+        preProcessedVersions[h4Text] = {
+            versions: versions,
+            source: versionSource
+        };
+        
+        console.log(`  "${h4Text}" 版本预处理完成，来源: ${versionSource}`);
+    });
+    
+    console.log('所有软件版本预处理完成');
+}
