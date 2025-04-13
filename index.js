@@ -3,13 +3,17 @@ const linksData = [
     {"h4": "压缩解压", "name": "7-Zip", "baidu": "https://www.7-zip.org/download.html"},
     {"h4": "压缩解压", "name": "WinRAR", "baidu": "https://pan.baidu.com/s/"},
     {"h4": "压缩解压", "name": "Bandizip", "baidu": "https://pan.baidu.com/s/"},
-    {"h4": "浏览器", "name": "Googel Chrome", "baidu": "https://pan.baidu.com/s/"},
+    {"h4": "浏览器", "name": "Googel Chrome", "baidu": ""},
     {"h4": "浏览器", "name": "Edge", "baidu": "https://www.microsoft.com/zh-cn/edge/download?form=MA13FJ"},
     {"h4": "杀毒软件", "name": "火绒安全软件", "baidu": "https://huorong.cn/person5.html"},
     {"h4": "杀毒软件", "name": "360安全卫士 (是垃圾！)", "baidu": "https://pan.baidu.com/s/"},
     {"h4": "杀毒软件", "name": "腾讯电脑管家（是垃圾！）", "baidu": "https://pan.baidu.com/s/"},
     {"h4": "杀毒软件", "name": "金山毒霸（是垃圾！）", "baidu": "https://pan.baidu.com/s/"},
     {"h4": "最强播放器", "name": "potplayer", "baidu": "https://potplayer.tv/?lang=zh_CN"},
+    {"h4": "截图软件", "name": "pixpin", "baidu": "https://apps.microsoft.com/detail/xp89f3cgsrzhc7?hl=zh-CN&gl=CN"},
+    {"h4": "主题壁纸", "name": "巨应壁纸", "baidu": "https://apps.microsoft.com/detail/9mv8gk87mz05?launch=true&mode=full&hl=zh-cn&gl=cn&ocid=bingwebsearch"},
+    {"h4": "远程控制", "name": "todesk", "baidu": "https://www.todesk.com/download.html"},
+    {"h4": "卸载工具", "name": "geek", "baidu": "https://geekuninstaller.com/"},
     {"h4": "amos", "name": "Amos24", "baidu": "https://pan.baidu.com/s/12s3OUVjjnDPZ8w1FHVo8ww?pwd=9999"},
     {"h4": "amos", "name": "Amos26", "baidu": "https://pan.baidu.com/s/1dcKoeLnShgWw3OvjEMBFUQ?pwd=9999"},
     {"h4": "amos", "name": "Amos28", "baidu": "https://pan.baidu.com/s/1OKLyUVbRW66FbKC8OoVmrQ?pwd=9999"},
@@ -377,7 +381,7 @@ function createDownloadButtons(versionName) {
     
     const baiduDownload = document.createElement('a');
     baiduDownload.className = 'download-button baidu-download';
-    baiduDownload.innerText = '百度网盘下载链接';
+    baiduDownload.innerText = '下载链接';
     baiduDownload.href = 'javascript:void(0)';
     baiduDownload.addEventListener('click', function() {
         getDownloadLink(versionName, 'baidu');
@@ -572,12 +576,11 @@ function showLinkNotFoundOverlay() {
     const errorDesc = document.createElement('p');
     errorDesc.innerText = '请联系人工客服服务获取下载链接';
     
-    // 添加二维码图片
+    //添加二维码图片
     const qrCode = document.createElement('img');
-    qrCode.src = 'https://vedio.softgj.com/Picture/qrcode.jpg'; // 替换为实际的二维码图片
+    qrCode.src = '/img/gzh.png'; // 替换为实际的二维码图片
     qrCode.alt = '客服二维码';
     qrCode.className = 'qr-code';
-    
     // 添加关闭按钮
     const closeButton = createCloseButton('close-error-overlay', errorOverlay);
     
@@ -615,15 +618,15 @@ function showNoVersionOverlay(softwareName) {
     
     // 添加标题
     const errorTitle = document.createElement('h3');
-    errorTitle.innerText = '未找到版本信息';
+    errorTitle.innerText = '软件可以安装 但是还未整理上传网盘';
     
     // 添加描述
     const errorDesc = document.createElement('p');
-    errorDesc.innerText = `未找到 "${softwareName}" 的可用版本，请联系客服获取帮助。`;
+    errorDesc.innerText = `请联系客服获取自己想要的版本`;
     
     // 添加二维码图片
     const qrCode = document.createElement('img');
-    qrCode.src = 'https://vedio.softgj.com/Picture/qrcode.jpg';
+    qrCode.src = '/img/gzh.png';
     qrCode.alt = '客服二维码';
     qrCode.className = 'qr-code';
     
@@ -649,51 +652,51 @@ function showNoVersionOverlay(softwareName) {
     document.body.appendChild(errorOverlay);
 }
 
-// 添加显示联系方式的函数
-function showContactOverlay(requestType) {
-    // 移除已存在的联系覆盖层
-    removeExistingOverlays('.contact-overlay');
+// // 添加显示联系方式的函数
+// function showContactOverlay(requestType) {
+//     // 移除已存在的联系覆盖层
+//     removeExistingOverlays('.contact-overlay');
     
-    // 创建覆盖层
-    const contactOverlay = document.createElement('div');
-    contactOverlay.className = 'error-overlay contact-overlay';
+//     // 创建覆盖层
+//     const contactOverlay = document.createElement('div');
+//     contactOverlay.className = 'error-overlay contact-overlay';
     
-    // 创建内容容器
-    const contactContainer = document.createElement('div');
-    contactContainer.className = 'error-container';
+//     // 创建内容容器
+//     const contactContainer = document.createElement('div');
+//     contactContainer.className = 'error-container';
     
-    // 添加标题
-    const contactTitle = document.createElement('h3');
-    contactTitle.innerText = `联系客服 - ${requestType}`;
+//     // 添加标题
+//     const contactTitle = document.createElement('h3');
+//     contactTitle.innerText = `联系客服 - ${requestType}`;
     
-    // 添加描述
-    const contactDesc = document.createElement('p');
-    contactDesc.innerText = '请扫描下方二维码联系客服获取帮助';
+//     // 添加描述
+//     const contactDesc = document.createElement('p');
+//     contactDesc.innerText = '请扫描下方二维码联系客服获取帮助';
     
-    // 添加二维码图片
-    const qrCode = document.createElement('img');
-    qrCode.src = 'https://vedio.softgj.com/Picture/qrcode.jpg'; // 替换为实际的二维码图片
-    qrCode.alt = '客服二维码';
-    qrCode.className = 'qr-code';
+//     // 添加二维码图片
+//     const qrCode = document.createElement('img');
+//     qrCode.src = 'https://vedio.softgj.com/Picture/qrcode.jpg'; // 替换为实际的二维码图片
+//     qrCode.alt = '客服二维码';
+//     qrCode.className = 'qr-code';
     
-    // 添加关闭按钮
-    const closeButton = createCloseButton('close-error-overlay', contactOverlay);
+//     // 添加关闭按钮
+//     const closeButton = createCloseButton('close-error-overlay', contactOverlay);
     
-    // 组装各部分
-    contactContainer.appendChild(closeButton);
-    contactContainer.appendChild(contactTitle);
-    contactContainer.appendChild(contactDesc);
-    contactContainer.appendChild(qrCode);
+//     // 组装各部分
+//     contactContainer.appendChild(closeButton);
+//     contactContainer.appendChild(contactTitle);
+//     contactContainer.appendChild(contactDesc);
+//     contactContainer.appendChild(qrCode);
     
-    contactOverlay.appendChild(contactContainer);
+//     contactOverlay.appendChild(contactContainer);
     
-    // 添加点击覆盖层关闭功能
-    contactOverlay.addEventListener('click', function(event) {
-        if (event.target === contactOverlay) {
-            document.body.removeChild(contactOverlay);
-        }
-    });
+//     // 添加点击覆盖层关闭功能
+//     contactOverlay.addEventListener('click', function(event) {
+//         if (event.target === contactOverlay) {
+//             document.body.removeChild(contactOverlay);
+//         }
+//     });
     
-    // 添加到 body
-    document.body.appendChild(contactOverlay);
-}
+//     // 添加到 body
+//     document.body.appendChild(contactOverlay);
+// }
