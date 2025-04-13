@@ -1,4 +1,301 @@
-// 添加自定义版本下载链接映射 - 放在文件顶部全局作用域
+// 在index.js中直接嵌入数据，不再使用fetch
+const linksData = [
+    {
+        "h4": "压缩解压",
+        "name": "7-Zip",
+        "baidu": "https://www.7-zip.org/download.html"
+    },
+    {
+        "h4": "压缩解压",
+        "name": "WinRAR",
+        "baidu": "https://pan.baidu.com/s/"
+    },
+    {
+        "h4": "压缩解压",
+        "name": "Bandizip",
+        "baidu": "https://pan.baidu.com/s/"
+    },
+    {
+        "h4": "浏览器",
+        "name": "Googel Chrome",
+        "baidu": "https://pan.baidu.com/s/"
+    },
+    {
+        "h4": "浏览器",
+        "name": "Edge",
+        "baidu": "https://www.microsoft.com/zh-cn/edge/download?form=MA13FJ"
+    },
+    {
+        "h4": "杀毒软件",
+        "name": "火绒安全软件",
+        "baidu": "https://huorong.cn/person5.html"
+    },
+    {
+        "h4": "杀毒软件",
+        "name": "360安全卫士 (是垃圾！)",
+        "baidu": "https://pan.baidu.com/s/"
+    },
+    {
+        "h4": "杀毒软件",
+        "name": "腾讯电脑管家（是垃圾！）",
+        "baidu": "https://pan.baidu.com/s/"
+    },
+    {
+        "h4": "杀毒软件",
+        "name": "金山毒霸（是垃圾！）",
+        "baidu": "https://pan.baidu.com/s/"
+    },
+    {
+        "h4": "最强播放器",
+        "name": "potplayer",
+        "baidu": "https://potplayer.tv/?lang=zh_CN"
+    },
+    {
+        "h4": "amos",
+        "name": "Amos24",
+        "baidu": "https://pan.baidu.com/s/12s3OUVjjnDPZ8w1FHVo8ww?pwd=9999"
+    },
+    {
+        "h4": "amos",
+        "name": "Amos26",
+        "baidu": "https://pan.baidu.com/s/1dcKoeLnShgWw3OvjEMBFUQ?pwd=9999"
+    },
+    {
+        "h4": "amos",
+        "name": "Amos28",
+        "baidu": "https://pan.baidu.com/s/1OKLyUVbRW66FbKC8OoVmrQ?pwd=9999"
+    },
+    {
+        "h4": "amos",
+        "name": "Amos29",
+        "baidu": "https://pan.baidu.com/s/1F51G0PGVK8n4wJ3coCMDsg?pwd=9999"
+    },
+    {
+        "h4": "Avantage",
+        "name": "Avantage6.9.0",
+        "baidu": "https://pan.baidu.com/s/16XfsAXxLXWBg4wD8nW9C7w?pwd=9999"
+    },
+    {
+        "h4": "AxMath",
+        "name": "AxMath2.6",
+        "baidu": "https://pan.baidu.com/s/1dmZXTNh84YHkUI1t3w6sPQ?pwd=9999"
+    },
+    {
+        "h4": "Cytoscape",
+        "name": "Cytoscape3.7.1",
+        "baidu": "https://pan.baidu.com/s/16Q7DX7Re9R_UTDedQTSA5w?pwd=9999"
+    },
+    {
+        "h4": "Design Expert",
+        "name": "Design Expert13",
+        "baidu": "https://pan.baidu.com/s/1sucyVBIkc-dyVD0Gb1_eEw?pwd=9999"
+    },
+    {
+        "h4": "FX Draw Tools",
+        "name": "FX Draw Tools MultiDocs 24.05.01",
+        "baidu": "https://pan.baidu.com/s/19gCaxVLmcW4UGxBX4By8WA?pwd=9999"
+    },
+    {
+        "h4": "GraphPad Prism",
+        "name": "GraphPad Prism10.1",
+        "baidu": "https://pan.baidu.com/s/1liIau5YFQVKP0xplb3ERAA?pwd=9999"
+    },
+    {
+        "h4": "Lingo",
+        "name": "Lingo18",
+        "baidu": "https://pan.baidu.com/s/1TMdWy_DFopglmkaPrgvbTw?pwd=9999"
+    },
+    {
+        "h4": "Maple",
+        "name": "Maple v2021",
+        "baidu": "https://pan.baidu.com/s/18TGRoGdeHvbI4gZizW82uQ?pwd=9999"
+    },
+    {
+        "h4": "Maple",
+        "name": "Maple v2024",
+        "baidu": "https://pan.baidu.com/s/1T5b3KNyscv-GCje9wKS6LA?pwd=9999"
+    },
+    {
+        "h4": "Mathcad",
+        "name": "Mathcad 15.0",
+        "baidu": "https://pan.baidu.com/s/1F83U41H2Lk2g9VsaoDgx_A?pwd=9999"
+    },
+    {
+        "h4": "Mathematica",
+        "name": "Mathematica 10.3",
+        "baidu": "https://pan.baidu.com/s/1gVw0g9339rqddSl7nMwzYg?pwd=9999"
+    },
+    {
+        "h4": "Mathematica",
+        "name": "Mathematica 11.3",
+        "baidu": "https://pan.baidu.com/s/10ZHRYdl7g_IU8hf1QPprvQ?pwd=9999"
+    },
+    {
+        "h4": "Mathematica",
+        "name": "Mathematica 12",
+        "baidu": "https://pan.baidu.com/s/1yNh-GsEo3ARDlEKQpaNHjQ?pwd=9999"
+    },
+    {
+        "h4": "Mathematica",
+        "name": "Mathematica 13",
+        "baidu": "https://pan.baidu.com/s/1Vw1pT8KuZU7LZEHdCzWdlg?pwd=9999"
+    },
+    {
+        "h4": "Mathematica",
+        "name": "Mathematica 14",
+        "baidu": "https://pan.baidu.com/s/1Tw1GmDjQO1LV3Iwv-tB8Gw?pwd=9999"
+    },
+    {
+        "h4": "Mathematica",
+        "name": "Mathematica 9.0",
+        "baidu": "https://pan.baidu.com/s/15UKQlmnW7tdzMLXhequCbw?pwd=9999"
+    },
+    {
+        "h4": "MATLAB",
+        "name": "MATLAB R2016b",
+        "baidu": "https://pan.baidu.com/s/1fV9-v2y4gayNfl2k8OAkQQ?pwd=9999"
+    },
+    {
+        "h4": "MATLAB",
+        "name": "MATLAB R2020b",
+        "baidu": "https://pan.baidu.com/s/1eoVkUr6gJT2Ou8suEsko_w?pwd=9999"
+    },
+    {
+        "h4": "MATLAB",
+        "name": "MATLAB R2021b",
+        "baidu": "https://pan.baidu.com/s/1CeoxdwIGxleJaF1n7werww?pwd=9999"
+    },
+    {
+        "h4": "MATLAB",
+        "name": "MATLAB R2022b",
+        "baidu": "https://pan.baidu.com/s/1lpPuMz5cs72g3H5mU49Gkw?pwd=9999"
+    },
+    {
+        "h4": "MATLAB",
+        "name": "MATLAB R2023b",
+        "baidu": "https://pan.baidu.com/s/1xJAx7o-cVsBeGvktq4vqgA?pwd=9999"
+    },
+    {
+        "h4": "MATLAB",
+        "name": "MATLAB R2024b",
+        "baidu": "https://pan.baidu.com/s/1gtMEaVhW0yb2B0uxc-OjhQ?pwd=9999"
+    },
+    {
+        "h4": "Minitab",
+        "name": "Minitab21",
+        "baidu": "https://pan.baidu.com/s/14paWlaHafItXOwTF7d7kZg?pwd=9999"
+    },
+    {
+        "h4": "Minitab",
+        "name": "Minitab22",
+        "baidu": "https://pan.baidu.com/s/1NDpg9D2tLExy02YP7yXq_A?pwd=9999"
+    },
+    {
+        "h4": "Mplus",
+        "name": "Mplus7.4",
+        "baidu": "https://pan.baidu.com/s/1yFzNFBKsn_8HxqcJxJniSA?pwd=9999"
+    },
+    {
+        "h4": "Mplus",
+        "name": "Mplus8.11",
+        "baidu": "https://pan.baidu.com/s/1316qHGV21dIpzo1YQOG8Dg?pwd=9999"
+    },
+    {
+        "h4": "Mplus",
+        "name": "Mplus8.7",
+        "baidu": "https://pan.baidu.com/s/15RvpKlGK9_i_sNMLEJ7DqA?pwd=9999"
+    },
+    {
+        "h4": "Navicat",
+        "name": "Navicat Premium17",
+        "baidu": "https://pan.baidu.com/s/1x8dqHG-omENyKiEy1K33wA?pwd=9999"
+    },
+    {
+        "h4": "NCSS",
+        "name": "NCSS 2021",
+        "baidu": "https://pan.baidu.com/s/1QYh1OtcVlvh7APRVRCPjqQ?pwd=9999"
+    },
+    {
+        "h4": "NCSS",
+        "name": "NCSS 2023",
+        "baidu": "https://pan.baidu.com/s/1BEgas6jzqZAEUbchP5bi5w?pwd=9999"
+    },
+    {
+        "h4": "Origin",
+        "name": "Origin2022",
+        "baidu": "https://pan.baidu.com/s/11hU9BJnVZUrwgilFhLi5KQ?pwd=9999"
+    },
+    {
+        "h4": "Origin",
+        "name": "Origin2024",
+        "baidu": "https://pan.baidu.com/s/1Cok95LInUnjnb319vVqVeg?pwd=9999"
+    },
+    {
+        "h4": "SAS",
+        "name": "SAS.9.4",
+        "baidu": "https://pan.baidu.com/s/16VwkZP_xX3QVY-b5G6UyqQ?pwd=9999"
+    },
+    {
+        "h4": "SigmaPlot",
+        "name": "SigmaPlot 15.0",
+        "baidu": "https://pan.baidu.com/s/1ABYJd9rtX1iehm2n1_l69w?pwd=9999"
+    },
+    {
+        "h4": "SQL Server",
+        "name": "SQL Server2008",
+        "baidu": "https://pan.baidu.com/s/10ThRwreKj85sbjm4FLnpSQ?pwd=9999"
+    },
+    {
+        "h4": "SQL Server",
+        "name": "SQL Server2019",
+        "baidu": "https://pan.baidu.com/s/1W2614Wjd2bmVZ4l1TVtO5A?pwd=9999"
+    },
+    {
+        "h4": "SQL Server",
+        "name": "SQL Server2022",
+        "baidu": "https://pan.baidu.com/s/1kAlMrpyI0BArzUV6T90Cxg?pwd=9999"
+    },
+    {
+        "h4": "Tableau",
+        "name": "Tableau2018",
+        "baidu": "https://pan.baidu.com/s/1UfTn4ZkozZTobI69gHnPLA?pwd=9999"
+    },
+    {
+        "h4": "Tableau",
+        "name": "Tableau2021",
+        "baidu": "https://pan.baidu.com/s/13nepF_Pm8UhgTcpYqTdRfw?pwd=9999"
+    },
+    {
+        "h4": "Tableau",
+        "name": "Tableau2023",
+        "baidu": "https://pan.baidu.com/s/1VF2NwmDE_l2RDt-pkEtcAw?pwd=9999"
+    },
+    {
+        "h4": "Tableau",
+        "name": "Tableau2024",
+        "baidu": "https://pan.baidu.com/s/16XfsAXxLXWBg4wD8nW9C7w?pwd=9999"
+    },
+    {
+        "h4": "Tableau",
+        "name": "Tableau2025",
+        "baidu": "https://pan.baidu.com/s/16XfsAXxLXWBg4wD8nW9C7w?pwd=9999"
+    },
+    {
+        "h4": "科学计算",
+        "name": "Amos24",
+        "baidu": "https://pan.baidu.com/s/12s3OUVjjnDPZ8w1FHVo8ww?pwd=9999"
+    },
+    {
+        "h4": "科学计算",
+        "name": "Amos26",
+        "baidu": "https://pan.baidu.com/s/1dcKoeLnShgWw3OvjEMBFUQ?pwd=9999"
+    },
+    {
+        "h4": "科学计算",
+        "name": "Amos28",
+        "baidu": "https://pan.baidu.com/s/1OKLyUVbRW66FbKC8OoVmrQ?pwd=9999"
+    }
+];
 
 // 添加一个全局对象来存储预处理好的版本数据
 const preProcessedVersions = {};
@@ -59,10 +356,6 @@ document.addEventListener('DOMContentLoaded', function() {
             setupGridItemClickEvents();
         });
 });
-
-// 全局变量用于存储链接数据
-let linksData = [];
-
 // 加载JSON数据的函数
 function loadLinksData() {
     // 尝试多个可能的路径
@@ -473,11 +766,9 @@ function openCustomVersionPage(softwareName, versionsList) {
 function getDownloadLink(softwareName, linkType) {
     console.log(`获取 ${softwareName} 的 ${linkType} 下载链接`);
     
-    // 从预定义的linksData中查找
-    if (typeof linksData !== 'undefined' && Array.isArray(linksData)) {
-        // 精确匹配软件名称
+    // 从linksData中查找
             const foundSoftware = linksData.find(item => 
-            item.name === softwareName
+        item.name === softwareName
             );
             
             if (foundSoftware) {
@@ -488,7 +779,6 @@ function getDownloadLink(softwareName, linkType) {
                     // 打开新窗口访问链接
                     window.open(link, '_blank');
                     return;
-            }
                 }
             }
             
@@ -521,6 +811,55 @@ function showLinkNotFoundOverlay() {
     // 添加二维码图片
     const qrCode = document.createElement('img');
     qrCode.src = 'https://vedio.softgj.com/Picture/qrcode.jpg'; // 替换为实际的二维码图片
+    qrCode.alt = '客服二维码';
+    qrCode.className = 'qr-code';
+    
+    // 添加关闭按钮
+    const closeButton = createCloseButton('close-error-overlay', errorOverlay);
+    
+    // 组装各部分
+    errorContainer.appendChild(closeButton);
+    errorContainer.appendChild(errorTitle);
+    errorContainer.appendChild(errorDesc);
+    errorContainer.appendChild(qrCode);
+    
+    errorOverlay.appendChild(errorContainer);
+    
+    // 添加点击覆盖层关闭功能
+    errorOverlay.addEventListener('click', function(event) {
+        if (event.target === errorOverlay) {
+            document.body.removeChild(errorOverlay);
+        }
+    });
+    
+    // 添加到 body
+    document.body.appendChild(errorOverlay);
+}
+
+// 显示无版本信息的覆盖层
+function showNoVersionOverlay(softwareName) {
+    // 移除已存在的覆盖层
+    removeExistingOverlays('.error-overlay');
+    
+    // 创建覆盖层
+    const errorOverlay = document.createElement('div');
+    errorOverlay.className = 'error-overlay';
+    
+    // 创建内容容器
+    const errorContainer = document.createElement('div');
+    errorContainer.className = 'error-container';
+    
+    // 添加标题
+    const errorTitle = document.createElement('h3');
+    errorTitle.innerText = '未找到版本信息';
+    
+    // 添加描述
+    const errorDesc = document.createElement('p');
+    errorDesc.innerText = `未找到 "${softwareName}" 的可用版本，请联系客服获取帮助。`;
+    
+    // 添加二维码图片
+    const qrCode = document.createElement('img');
+    qrCode.src = 'https://vedio.softgj.com/Picture/qrcode.jpg';
     qrCode.alt = '客服二维码';
     qrCode.className = 'qr-code';
     
@@ -593,53 +932,4 @@ function showContactOverlay(requestType) {
     
     // 添加到 body
     document.body.appendChild(contactOverlay);
-}
-
-// 新增函数：显示无版本信息的覆盖层
-function showNoVersionOverlay(softwareName) {
-    // 移除已存在的覆盖层
-    removeExistingOverlays('.error-overlay');
-    
-    // 创建覆盖层
-    const errorOverlay = document.createElement('div');
-    errorOverlay.className = 'error-overlay';
-    
-    // 创建内容容器
-    const errorContainer = document.createElement('div');
-    errorContainer.className = 'error-container';
-    
-    // 添加标题
-    const errorTitle = document.createElement('h3');
-    errorTitle.innerText = '未找到版本信息';
-    
-    // 添加描述
-    const errorDesc = document.createElement('p');
-    errorDesc.innerText = `未找到 "${softwareName}" 的可用版本，请联系客服获取帮助。`;
-    
-    // 添加二维码图片
-    const qrCode = document.createElement('img');
-    qrCode.src = 'https://vedio.softgj.com/Picture/qrcode.jpg';
-    qrCode.alt = '客服二维码';
-    qrCode.className = 'qr-code';
-    
-    // 添加关闭按钮
-    const closeButton = createCloseButton('close-error-overlay', errorOverlay);
-    
-    // 组装各部分
-    errorContainer.appendChild(closeButton);
-    errorContainer.appendChild(errorTitle);
-    errorContainer.appendChild(errorDesc);
-    errorContainer.appendChild(qrCode);
-    
-    errorOverlay.appendChild(errorContainer);
-    
-    // 添加点击覆盖层关闭功能
-    errorOverlay.addEventListener('click', function(event) {
-        if (event.target === errorOverlay) {
-            document.body.removeChild(errorOverlay);
-        }
-    });
-    
-    // 添加到 body
-    document.body.appendChild(errorOverlay);
 }
