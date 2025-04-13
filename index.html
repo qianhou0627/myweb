@@ -58,7 +58,7 @@
                 <button class="search-btn" id="search-btn">搜索</button>
             </div>
             <!-- 右侧按钮 -->
-            <button class="control-btn right-btn">能搜到就能安装（可提供远程安装服务）</button>
+            <button class="control-btn right-btn">能搜到就能安装（可提供远程安装）</button>
         </div>
 
         <!-- 隐藏的右侧展示盒 -->
@@ -80,11 +80,13 @@
                 <h3>分类筛选</h3>
                 <!-- 分类列表 -->
                 <ul class="category-list">
-                    <li class="active" data-category="all">热门推荐</li>
+                    <li data-category="all">热门推荐</li>
                     <li data-category="download">下载教程</li>
-                    <li data-category="essential">装机必备</li>
-                    <li data-category="os">操作系统</li>
-                    <li data-category="office">办公软件</li>
+                    <li data-category="行业软件">行业软件</li>
+                    <li data-category="开发编程">开发编程</li>
+                    <li data-category="理科工具">理科工具</li>
+                    <li data-category="电子电路">电子电路</li>
+                    <li data-category="仿真模拟">仿真模拟</li>
                     <li data-category="pdf">PDF软件</li>
                     <li data-category="doc">文献工具</li>
                     <li data-category="trans">翻译软件</li>
@@ -96,23 +98,108 @@
                     <li data-category="mech">机械设计</li>
                     <li data-category="arch">建筑设计</li>
                     <li data-category="web">网页设计</li>
-                    <li data-category="开发编程">开发编程</li>
-                    <li data-category="理科工具">理科工具</li>
-                    <li data-category="仿真模拟">仿真模拟</li>
-                    <li data-category="电子电路">电子电路</li>
-                    <li data-category="行业软件">行业软件</li>
+                    <li data-category="os">操作系统</li>
+                    <li data-category="office">办公软件</li>
+                    <li data-category="essential">装机必备</li>
                 </ul>
             </div>
 
             <!-- 右侧内容展示 -->
             <div class="content-display">
-                <!-- 初始化显示全部分类的一部分 -->
-                <div id="all" class="grid-container category-content">
-                    <!-- 这里会显示全部分类的内容 -->
+
+                <!-- 热门推荐类别 -->
+                <div id="all" class="grid-container category-content active">
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="./Picture/20240417115603_202009061656155171.png" alt="ArcGIS">
+                        </div>
+                        <h4>ArcGIS</h4>
+                        <p>地理信息系统</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="./Picture/20240217150116_10104236_f109a95622.png" alt="matlab">
+                        </div>
+                        <h4>Matlab</h4>
+                        <p>数学建模工具</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="./Picture/20240217152402_08162237_ad0f6a0970.png" alt="ENVI">
+                        </div>
+                        <h4>ENVI</h4>
+                        <p>遥感图像处理平台</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="./Picture/20240217150749_22114905_6fa871b95d.png" alt="Origin">
+                        </div>
+                        <h4>Origin</h4>
+                        <p>数据分析软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="./Picture/20240217145516_201712221041576906.jpg" alt="Python">
+                        </div>
+                        <h4>Python</h4>
+                        <p>高级程序设计语言</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="./Picture/20240220112823_14163041_151e0f68d6.png" alt="PyCharm">
+                        </div>
+                        <h4>PyCharm</h4>
+                        <p>Python开发工具</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="./Picture/20240220152846_13175453_a85cbb2b89.png" alt="IntelliJ IDEA">
+                        </div>
+                        <h4>IDEA</h4>
+                        <p>Java开发工具</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="./Picture/20241205093201_23095637_6b0a388234.png" alt="KeyShot">
+                        </div>
+                        <h4>KeyShot</h4>
+                        <p>3D渲染器</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="./Picture/20240907124904_201712041118507991.jpg" alt="Rhinoceros">
+                        </div>
+                        <h4>Rhinoceros</h4>
+                        <p>犀牛建模软件</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="./Picture/20240907150307_61f21230d0d9b.png" alt="SketchUp">
+                        </div>
+                        <h4>SketchUp</h4>
+                        <p>草图大师 3D建模</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="./Picture/20240217150541_201801161640497313.jpg" alt="MySQL">
+                        </div>
+                        <h4>MySQL</h4>
+                        <p>数据库</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="./Picture/20240217150623_22160820_6abf753b8c.png" alt="Navicat Premium">
+                        </div>
+                        <h4>Navicat Premium</h4>
+                        <p>数据库开发工具</p>
+                    </div>
                 </div>
 
-                <!-- 装机必备类别 -->
-                <div id="essential" class="grid-container category-content active">
+                <!-- 下载教程类别 -->
+
+
+                <!-- 装机必备类别 --> 
+                <div id="essential" class="grid-container category-content">
                     <div class="grid-item" data-versions='["7-Zip", "WinRAR", "Bandizip"]'>
                         <div class="app-icon">
                             <img src="./Picture/20240121094402_压缩包.png" alt="压缩解压">
@@ -1373,6 +1460,20 @@
                         <h4>FX Draw Tools MultiDocs</h4>
                         <p>数学图标绘制工具</p>
                     </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="" alt="MathType">
+                        </div>
+                        <h4>MathType</h4>
+                        <p>数学公式编辑器</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="app-icon">
+                            <img src="" alt="SPSS">
+                        </div>
+                        <h4>SPSS</h4>
+                        <p>统计分析软件</p>
+                    </div>
                     </div>
                     
                 <!-- 仿真模拟类别 -->
@@ -1927,7 +2028,7 @@
     <script>
         // 打字机效果
         var text = document.querySelector('.scrolling-text');
-        const txt = ["相信奇迹的人，本身和奇迹一样了不起！", "给我高高的飞起来啊！", "拉勾的事情，就一定要做到！"];
+        const txt = ["需要什么都可以搜，能搜到就能安装", "搜不到的联系人工", ""];
     
         var index = 0;
         var xiaBiao = 0;
@@ -1962,17 +2063,17 @@
             // 初始化：创建全部分类内容
             const allContainer = document.getElementById('all');
             // 清空现有内容
-            allContainer.innerHTML = '';
+            // allContainer.innerHTML = '';
             
             // 从每个分类中提取前4个项目添加到全部分类中
-            document.querySelectorAll('.category-content:not(#all)').forEach(category => {
-                const items = category.querySelectorAll('.grid-item');
-                for (let i = 0; i < Math.min(4, items.length); i++) {
-                    if (items[i]) {
-                        allContainer.appendChild(items[i].cloneNode(true));
-                    }
-                }
-            });
+            // document.querySelectorAll('.category-content:not(#all)').forEach(category => {
+            //     const items = category.querySelectorAll('.grid-item');
+            //     for (let i = 0; i < Math.min(4, items.length); i++) {
+            //         if (items[i]) {
+            //             allContainer.appendChild(items[i].cloneNode(true));
+            //         }
+            //     }
+            // });
             
             // 为每个分类项添加点击事件
             categoryItems.forEach(item => {
