@@ -62,7 +62,10 @@ const linksData = [
     {"h4": "Tableau", "name": "Tableau2025", "baidu": "https://pan.baidu.com/s/16XfsAXxLXWBg4wD8nW9C7w?pwd=9999"},
     {"h4": "科学计算", "name": "Amos24", "baidu": "https://pan.baidu.com/s/12s3OUVjjnDPZ8w1FHVo8ww?pwd=9999"},
     {"h4": "科学计算", "name": "Amos26", "baidu": "https://pan.baidu.com/s/1dcKoeLnShgWw3OvjEMBFUQ?pwd=9999"},
-    {"h4": "科学计算", "name": "Amos28", "baidu": "https://pan.baidu.com/s/1OKLyUVbRW66FbKC8OoVmrQ?pwd=9999"}
+    {"h4": "科学计算", "name": "Amos28", "baidu": "https://pan.baidu.com/s/1OKLyUVbRW66FbKC8OoVmrQ?pwd=9999"},
+    {"h4": "Keil", "name": "Keil5 C51+MDK", "baidu": "https://share.feijipan.com/s/4LGuQ4yT?code=KEI2"},
+    {"h4": "PaintTool SAI", "name": "SAI2 2024", "baidu": "https://share.feijipan.com/s/IUGuQXSt?code=SAI2"},
+    
 ];
 
 // 添加一个全局对象来存储预处理好的版本数据
@@ -622,7 +625,7 @@ function showNoVersionOverlay(softwareName) {
     
     // 添加描述
     const errorDesc = document.createElement('p');
-    errorDesc.innerText = `请联系客服获取自己想要的版本`;
+    errorDesc.innerText = `请联系人工咨询自己想要的版本`;
     
     // 添加二维码图片
     const qrCode = document.createElement('img');
