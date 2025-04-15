@@ -618,7 +618,7 @@ function showNoVersionOverlay(softwareName) {
     
     // 添加标题
     const errorTitle = document.createElement('h3');
-    errorTitle.innerText = '软件可以安装 但是还未整理上传网盘';
+    errorTitle.innerText = '软件可以安装';
     
     // 添加描述
     const errorDesc = document.createElement('p');
