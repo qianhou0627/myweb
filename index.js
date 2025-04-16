@@ -72,8 +72,50 @@ const linksData = [
     {"h4": "ArcGIS", "name": "ENVI 5.3 中英文自由切换", "baidu": ""},
     {"h4": "ArcGIS", "name": "ENVI 5.6 中英文自由切换", "baidu": ""},
     {"h4": "ArcGIS", "name": "SPSS ", "baidu": ""},
-    {"h4": "MathType", "name": "MathType 7.8 最新 推荐", "baidu": "https://share.feijipan.com/n/m7yons"},
+    {"h4": "MathType", "name": "MathType 7.8 最新 推荐", "baidu": ""},
     {"h4": "MathType", "name": "MathType 6.9 考古级版本", "baidu": ""},
+    {"h4": "ENVI", "name": "ENVI 5.3 中英文自由切换", "baidu": ""},
+    {"h4": "ENVI", "name": "ENVI 5.6 中英文自由切换", "baidu": ""},
+    {"h4": "ENVI", "name": "ArcGIS 10.2~10.8", "baidu": ""},
+    {"h4": "ENVI", "name": "ArcGIS Pro", "baidu": ""},
+    {"h4": "PyCharm", "name": "PyCharm 2024", "baidu": ""},
+    {"h4": "PyCharm", "name": "Navicat 17", "baidu": ""},
+    {"h4": "PyCharm", "name": "Mysql", "baidu": ""},
+    {"h4": "PyCharm", "name": "deepseek 本地", "baidu": ""},
+    {"h4": "PyCharm", "name": "anaconda", "baidu": ""},
+    {"h4": "PyCharm", "name": "jupyter", "baidu": ""},
+    {"h4": "PyCharm", "name": "pytorch", "baidu": ""},
+    {"h4": "PyCharm", "name": "tensorflow", "baidu": ""},
+    {"h4": "PyCharm", "name": "keras", "baidu": ""},
+    {"h4": "IDEA", "name": "IDEA 2024", "baidu": ""},
+    {"h4": "IDEA", "name": "mysql", "baidu": ""},
+    {"h4": "IDEA", "name": "navicat", "baidu": ""},
+    {"h4": "IDEA", "name": "Java JDK", "baidu": ""},
+    {"h4": "IDEA", "name": "Tomcat", "baidu": ""},
+    {"h4": "IDEA", "name": "Deepseek", "baidu": ""},
+    {"h4": "keyshot", "name": "keyshot 2025", "baidu": ""},
+    {"h4": "keyshot", "name": "keyshot 2024", "baidu": ""},
+    {"h4": "keyshot", "name": "keyshot 2023", "baidu": ""},
+    {"h4": "keyshot", "name": "keyshot 10", "baidu": ""},
+    {"h4": "keyshot", "name": "Rhino", "baidu": ""},
+    {"h4": "rhinoceros", "name": "Rhino", "baidu": ""},
+    {"h4": "rhinoceros", "name": "keyshot", "baidu": ""},
+    {"h4": "sketchup", "name": "sketchup 2024", "baidu": ""},
+    {"h4": "sketchup", "name": "sketchup 2022", "baidu": ""},
+    {"h4": "sketchup", "name": "Enscape", "baidu": ""},
+    {"h4": "sketchup", "name": "V-ray", "baidu": ""},
+    {"h4": "sketchup", "name": "D5", "baidu": ""},
+    {"h4": "sketchup", "name": "Lumion", "baidu": ""},
+    {"h4": "sketchup", "name": "Revit", "baidu": ""},
+    {"h4": "mysql", "name": "mysql 官方地址下载", "baidu": "https://dev.mysql.com/downloads/"},
+    {"h4": "mysql", "name": "workbench", "baidu": ""},
+    {"h4": "mysql", "name": "Navicat", "baidu": ""},
+    {"h4": "mysql", "name": "sqlyog", "baidu": ""},
+    {"h4": "mysql", "name": "DBeaver", "baidu": ""},
+    {"h4": "mysql", "name": "DataGrip", "baidu": ""},
+    {"h4": "mysql", "name": "phpstorm", "baidu": ""},
+    {"h4": "mysql", "name": "pycharm", "baidu": ""},
+    {"h4": "navicat premium", "name": "navicat 17 最新", "baidu": ""},
     
 ];
 
@@ -113,66 +155,15 @@ function preProcessAllVersions() {
     console.log('所有软件版本预处理完成');
 }
 
-// 更新入口函数，在DOM加载后先预处理版本，再设置点击事件
+// 更新入口函数，在DOM加载后初始化功能
 document.addEventListener('DOMContentLoaded', function() {
-    // 首先加载JSON数据
-    loadLinksData()
-        .then(() => {
-            // 数据加载成功后，初始化其他功能
-            console.log('linksData加载成功，包含', linksData.length, '条记录');
-            setupNavigation();
-            setupSearch();
-            setupPlaceholderIcons();
-            setupScrollHandler();
-            setupGridItemClickEvents();
-        })
-        .catch(error => {
-            console.error('加载linksData失败:', error);
-            // 即使JSON加载失败，也初始化其他功能
+    console.log('linksData已加载，包含', linksData.length, '条记录');
     setupNavigation();
     setupSearch();
     setupPlaceholderIcons();
     setupScrollHandler();
-            setupGridItemClickEvents();
-        });
+    setupGridItemClickEvents();
 });
-// 加载JSON数据的函数
-function loadLinksData() {
-    // 尝试多个可能的路径
-    const possiblePaths = [
-        './src/links.json',
-        '/src/links.json',
-        '../src/links.json',
-        'src/links.json'
-    ];
-    
-    // 使用Promise.any尝试所有可能的路径
-    return Promise.any(
-        possiblePaths.map(path => 
-            fetch(path)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`路径 ${path} 请求失败: ${response.status}`);
-                    }
-                    console.log(`成功从 ${path} 加载数据`);
-                    return response.json();
-                })
-                .then(data => {
-                    if (Array.isArray(data)) {
-                        linksData = data;
-                        return linksData;
-                    } else {
-                        throw new Error(`从 ${path} 加载的数据不是数组`);
-                    }
-                })
-        )
-    ).catch(error => {
-        console.error('所有路径均加载失败:', error);
-        // 如果所有路径都失败，使用空数组
-        linksData = [];
-        return linksData;
-    });
-}
 
 // 顶部导航和侧边栏导航设置
 function setupNavigation() {
