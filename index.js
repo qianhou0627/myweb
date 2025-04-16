@@ -72,7 +72,7 @@ const linksData = [
     {"h4": "ArcGIS", "name": "ENVI 5.3 中英文自由切换", "baidu": ""},
     {"h4": "ArcGIS", "name": "ENVI 5.6 中英文自由切换", "baidu": ""},
     {"h4": "ArcGIS", "name": "SPSS ", "baidu": ""},
-    {"h4": "MathType", "name": "MathType 7.8 最新 推荐", "baidu": ""},
+    {"h4": "MathType", "name": "MathType 7.8 最新 推荐", "baidu": "https://share.feijipan.com/n/m7yons"},
     {"h4": "MathType", "name": "MathType 6.9 考古级版本", "baidu": ""},
     
 ];
