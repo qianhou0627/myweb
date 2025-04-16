@@ -65,6 +65,15 @@ const linksData = [
     {"h4": "科学计算", "name": "Amos28", "baidu": "https://pan.baidu.com/s/1OKLyUVbRW66FbKC8OoVmrQ?pwd=9999"},
     {"h4": "Keil", "name": "Keil5 C51+MDK", "baidu": "https://share.feijipan.com/s/4LGuQ4yT?code=KEI2"},
     {"h4": "PaintTool SAI", "name": "SAI2 2024", "baidu": "https://share.feijipan.com/s/IUGuQXSt?code=SAI2"},
+    {"h4": "DeepSeek 本地使用", "name": "DeepSeek 免费API 需要搭配CherryStudio使用", "baidu": "https://cloud.siliconflow.cn/i/i5kUdo5g"},
+    {"h4": "DeepSeek 本地使用", "name": "CherryStudio 安装包", "baidu": "https://cherry-ai.com/"},
+    {"h4": "ArcGIS", "name": "ArcGIS 10.2~10.8", "baidu": ""},
+    {"h4": "ArcGIS", "name": "ArcGIS Pro", "baidu": ""},
+    {"h4": "ArcGIS", "name": "ENVI 5.3 中英文自由切换", "baidu": ""},
+    {"h4": "ArcGIS", "name": "ENVI 5.6 中英文自由切换", "baidu": ""},
+    {"h4": "ArcGIS", "name": "SPSS ", "baidu": ""},
+    {"h4": "MathType", "name": "MathType 7.8 最新 推荐", "baidu": ""},
+    {"h4": "MathType", "name": "MathType 6.9 考古级版本", "baidu": ""},
     
 ];
 
