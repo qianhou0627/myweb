@@ -117,7 +117,7 @@ const linksData = [
     {"h4": "mysql", "name": "pycharm", "baidu": ""},
     {"h4": "navicat premium", "name": "navicat 17 最新", "baidu": ""},
     {"h4": "MyEclipse", "name": "MyEclipse 10", "baidu": "https://pan.baidu.com/s/1Se0l_Ppcm6qPY3fw9xTrNQ?pwd=6789"},
-    {"h4": "MyEclipse", "name": "MyEclipse 2019", "baidu": "https://pan.baidu.com/s/1Se0l_Ppcm6qPY3fw9xTrNQ?pwd=6789"},
+    {"h4": "MyEclipse", "name": "MyEclipse 2019", "baidu": ""},
 ];
 
 // 添加一个全局对象来存储预处理好的版本数据
